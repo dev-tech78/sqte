@@ -1,0 +1,40 @@
+{# { {% extends 'base_menu.html.twig' %} } #}
+
+
+{% block title %} Boutique!{% endblock %}
+<link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css')}}">
+{% block body %}
+<br><br><div class="container">
+
+ {% for message in app.session.flashBag.get('info') %}
+
+<div class="alert alert-info" role="alert">
+ {{message}}
+</div>
+{% endfor %}
+
+{% for message in app.session.flashBag.get('success') %}
+
+<div class="alert alert-success" role="alert">
+ {{message}}
+</div>
+{% endfor %}
+
+{% for message in app.session.flashBag.get('error') %}
+
+<div class="alert alert-danger" role="alert">
+ {{message}}
+</div>
+{% endfor %} 
+
+
+
+<ul class="list-group">
+{% for name,content in app.session.get('produits')  %}
+  <li class="list-group-item">{{name}} : {{ content }}</li>
+  {% endfor %}
+</ul>
+</div>
+
+
+{% endblock %}

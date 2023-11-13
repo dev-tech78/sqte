@@ -1,0 +1,80 @@
+{% extends 'base_menu.html.twig' %}
+
+{% block title %}Radio!{% endblock %}
+
+{% block body %}
+<br><br><div id="main-content" class="blog-page">
+    <div class="container">
+        <div class="row clearfix">
+		
+            <div class="col-lg-8 col-md-12 left-box">
+				{% for ateliers in atelier %}
+                <div class="card single_post">
+			
+                    <div class="body">
+                        <div class="img-post">
+                            <img class="d-block img-fluid" src="https://www.bootdey.com/image/800x480/FFB6C1/000000" alt="First slide">
+                        </div>
+                        <h3><a href="blog-details.html">{{ateliers.titel}}</a></h3>
+                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal</p>
+                    </div>
+                    <div class="footer">
+                        <div class="actions">
+                            <a  target="_blank" href="{{ asset('/upload/galerie/' ~ ateliers.programme )}}" class="btn btn-outline-secondary"  >Télécharger le programme </a>
+                        </div>
+                      <!--  <ul class="stats">
+                            <li><a href="javascript:void(0);">General</a></li>
+                            <li><a href="javascript:void(0);" class="fa fa-heart">28</a></li>
+                            <li><a href="javascript:void(0);" class="fa fa-comment">128</a></li>
+                        </ul> !-->
+                    </div>
+                </div>
+					{% endfor %}
+			
+ 
+                
+
+                
+
+                
+                                      
+                             
+            </div>
+			
+            <div class="col-lg-4 col-md-12 right-box">
+               
+                
+                <div class="card">
+                    <div class="header">
+                        <h2>Popular Posts</h2>                        
+                    </div>
+                    <div class="body widget popular-post">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="single_post">
+                                    <p class="m-b-0">Ateliers Cinéma</p>
+                                    <span>jun 22, 2018</span>
+                                    <div class="img-post">
+                                        <img src="https://www.bootdey.com/image/280x280/FFB6C1/000000" alt="Awesome Image">                                        
+                                    </div>                                            
+                                </div>
+                                <div class="single_post">
+                                    <p class="m-b-0">Ateliers Musique</p>
+                                    <span>jun 8, 2018</span>
+                                    <div class="img-post">
+                                        <img src="https://www.bootdey.com/image/280x280/FFB6C1/000000" alt="Awesome Image">                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+			
+        </div>
+
+    </div>
+</div>
+{% endblock %}

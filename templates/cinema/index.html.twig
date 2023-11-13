@@ -1,0 +1,150 @@
+{% extends 'base_menu.html.twig' %}
+
+{% block title %}Cinéma!{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+        <ul class="nav nav-tabs nav-justified mb-3   radio_barre" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="ex3-tab-1" data-bs-toggle="tab" href="#ex3-tabs-1"
+      role="tab"aria-controls="ex3-tabs-1"aria-selected="true">Fictions</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-2" data-bs-toggle="tab"
+      href="#ex3-tabs-2"role="tab"aria-controls="ex3-tabs-2"aria-selected="false">Documentaire</a >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-3" data-bs-toggle="tab"
+      href="#ex3-tabs-3"role="tab"aria-controls="ex3-tabs-3"aria-selected="false">Festival</a >
+  </li>
+
+   <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-4" data-bs-toggle="tab"
+      href="#ex3-tabs-4"role="tab"aria-controls="ex3-tabs-4"aria-selected="false">Atelier</a >
+  </li>
+</ul>
+
+<div class="tab-content" id="ex2-content">
+  <div class="tab-pane fade show active" id="ex3-tabs-1" role="tabpanel" aria-labelledby="ex3-tab-1" >
+    <section>
+    <div class="container">
+ 
+        <br>
+        <div class="row">
+        {% for longues in longue %}
+            <div class="col-sm-6 col-lg-4 mb-1-9">
+                <div class="card-wrapper">
+                    <div class="card-img"><img src="{{asset('/upload/galerie/' ~ longues.image )}}" alt="..."></div>
+                      
+                    <div class="card-body">
+                        <div>
+                            <h3 class="h5">{{longues.title}} </h3>
+                            <p class="display-30">Tous les titres de nos long-métrages.</p>
+                            <a href="{{ path('app_long')}}" class="read-more">voir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+             {% for courts in court %}
+            <div class="col-sm-6 col-lg-4 mb-1-9">
+                <div class="card-wrapper">
+                    <div class="card-img"><img src="{{asset('../images/clapper.png')}}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="h5">{{courts.title}}</h3>
+                            <p class="display-30">Gravida proin nibh vel velit auctor alique.</p>
+                            <a href="{{ path('app_court')}}" class="read-more">voir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor%}
+                 {% for series in serie %}
+            <div class="col-sm-6 col-lg-4 mb-1-9">
+                <div class="card-wrapper">
+                    <div class="card-img"><img src="https://www.bootdey.com/image/400x400/008B8B/000000" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="h5">{{series.title}}</h3>
+                            <p class="display-30">Nibh proin gravida vel velit auctor alique.</p>
+                            <a href="{{ path('app_serie')}}" class="read-more">voir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            
+            
+            
+             
+        </div>
+    </div>
+</section>
+  </div>
+
+  <!--Documentaire    -!-->
+  <div class="tab-pane fade" id="ex3-tabs-2" role="tabpanel" aria-labelledby="ex3-tab-2">
+    
+
+                <section>
+                    <div class="container">
+                        <br>
+                        <div class="row">
+                                        {{ render(controller('App\\Controller\\DocumentaireController::index' )) }}
+                        </div>
+                    </div>
+                </section>
+
+  </div>
+
+    <!--Festivale    -!-->
+  <div class="tab-pane fade" id="ex3-tabs-3" role="tabpanel" aria-labelledby="ex3-tab-3">
+  
+    <section>
+        <div class="container">
+            <br>
+            <div class="row">
+                    {{ render(controller( 'App\\Controller\\FestivalController::index' )) }}
+                
+            </div>
+        </div>
+    </section>
+
+   <!--Atelier    -!-->
+
+
+
+  </div>
+    <div class="tab-pane fade" id="ex3-tabs-4" role="tabpanel" aria-labelledby="ex3-tab-4">
+  
+            <section id="about-section" class="pt-5 pb-5">
+                <div class="container wrapabout">
+                    <div class="red"></div>
+                    <div class="row">
+                           {{ render(controller( 'App\\Controller\\AtelierController::AtelierCinema' )) }}
+                    </div>
+                </div>
+            </section>
+
+    </div>
+    
+    </div>
+
+  </div>
+  </div>
+
+
+</div>
+
+  </div>
+</div>
+       
+					</section>
+
+			</div>
+{% endblock %}

@@ -1,0 +1,207 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SANS QUE TU ERRES!{% endblock %}
+
+{% block body %}
+
+	<section id="sidebar">
+
+	   						 
+				<div class="inner">
+				<audio controls>
+							<p>écouter le live</p>
+                            <source src="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3"  type="audio/mp3">
+                            </audio>
+					<nav>
+						<ul>
+							<li><a href="#intro">Welcome</a></li>
+							<li><a href="#actu">Actu</a></li>
+							<li><a href="#media">Media</a></li>
+							<li><a href="#contact">contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+
+<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+                        
+							<h1>SANS QUE TU ERRES</h1>
+							<p>élablorer, accompagner, fomer informer, créer, professionnaliser </a><br />
+							et de promouvoir tous projets artistiques </a>.</p>
+							<ul class="actions">
+								<li><a href="#media" class="button scrolly">voir plus</a></li>
+							</ul>
+						</div>
+					</section>
+                    <section id="actualites" class="wrapper style3 fade-up">
+						
+							
+
+
+	
+<section class="section gray-bg" id="actu">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 text-center">
+                        <div class="section-title">
+                            <h2> <a href ="{{ path('app_actualites') }}">A LA UNE</a></h2>
+                            <p>I design and develop services for customers of all sizes, specializing in creating stylish, modern websites</p>
+                        </div>
+                    </div>
+                </div>
+				
+                <div class="row">
+				{% for articles in article %}
+                    <div class="col-lg-4">
+                        <div class="blog-grid">
+                            <div class="blog-img">
+                                <div class="date">{{articles.createdAt| date('d/m/y')}}</div>
+                                <a href="#">
+                                   <img src="images/media_11.png" title="" alt="">
+                                </a>
+                            </div>
+                            <div class="blog-info">
+                                <h5><a href="#">{{articles.title|u.truncate(50, '...')|capitalize}}</a></h5>
+                               
+                                <div class="btn-bar">
+                                    <a href="{{ path('detail',{'id': articles.id, 'slug': articles.slug}) }}" class="px-btn-arrow">
+									
+                                        <span>Lire plus</span>
+                                        <i class="arrow"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					{% endfor %}
+                    
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+						
+
+				<!-- One -->
+					<section id="media" class="wrapper style2 spotlights">
+						<section>
+							<a href="#" class="image"><img src="images/media_1.png" alt="" data-position="center center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>Médias</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="generic.html" class="button">WebTv</a></li>
+                                        <li><a href="{{ path('app_radio')}}" class="button">Radio</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="images/clapper.png" alt="" data-position="top center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2> Cinémas</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="{{ path('app_cinema') }}" class="button">voir plus</a></li>
+										
+                                       
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="images/musique.png" alt="" data-position="25% 25%" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2> Musiques</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="{{ path('app_musique') }}" class="button">voir plus</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+					</section>
+
+				<!-- Two -->
+					
+				<!-- Three -->
+					<section id="contact" class="wrapper style2 fade-up">
+						<div class="inner">
+							<h2>Entrer en contact avec nous</h2>
+							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<div class="split style1">
+								<section>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="titel">titre</label>
+												<input type="text" name="title" id="name" />
+											</div>
+											<div class="field half">
+												<label for="email">Email</label>
+												<input type="text" name="email" id="email" />
+											</div>
+											<div class="field half">
+												<label for="nom">Non</label>
+												<input type="text" name="nom" id="name" />
+											</div>
+											<div class="field half">
+												<label for="nature">Nature</label>
+												<input type="text" name="nature" id="email" />
+											</div>
+											<div class="field">
+												<label for="message">Message</label>
+												<textarea name="content" id="contant" rows="5"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><a href="" class="button submit">Message envoyer</a></li>
+										</ul>
+									</form>
+								</section>
+								<section>
+									<ul class="contact">
+										<li>
+											<h3>Address</h3>
+											<span>7 rue de la Cellophane<br />
+											78711 Mantes la ville<br />
+											</span>
+										</li>
+										<li>
+											<h3>Email</h3>
+											<a href="#">user@untitled.tld</a>
+										</li>
+										<li>
+											<h3>Phone</h3>
+											<span>(000) 000-0000</span>
+										</li>
+										<li>
+											<h3>Social</h3>
+											<ul class="icons">
+												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+												<li><a href="#" class="icon brands fa-youtube"><span class="label">youtube</span></a></li>
+												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+											</ul>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</section>
+
+			</div>
+{% endblock %}

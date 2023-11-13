@@ -1,0 +1,276 @@
+{% extends 'base_menu.html.twig' %}
+
+{% block title %}Radio!{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+        <ul class="nav nav-tabs nav-justified mb-3   radio_barre" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="ex3-tab-1" data-bs-toggle="tab" href="#ex3-tabs-1"
+      role="tab"aria-controls="ex3-tabs-1"aria-selected="true">EMISSIONS</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-2" data-bs-toggle="tab" href="#ex3-tabs-2"
+ role="tab" aria-controls="ex3-tabs-2" aria-selected="false" >ATELIRS</a >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-3" data-bs-toggle="tab"
+      href="#ex3-tabs-3"role="tab"aria-controls="ex3-tabs-3"aria-selected="false">PROGRAMME</a >
+  </li>
+</ul>
+
+<div class="tab-content" id="ex2-content">
+  <div class="tab-pane fade show active" id="ex3-tabs-1" role="tabpanel" aria-labelledby="ex3-tab-1" >
+    <section>
+    <div class="container">
+        <br>
+        <div class="row">
+       
+        {%  for emissions in repos %}
+            <div class="col-sm-6 col-lg-3 mb-1-9">
+                <div class="card-wrapper">
+                    <div class="card-img"><img src="https://www.bootdey.com/image/280x280/FFB6C1/000000" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="h5">{{emissions.nom}}</h3>
+                            <p class="display-30">.</p>
+                            <a href="{{ path('app_emession',{'nom': emissions.nom})}}" class="read-more">voir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             {% endfor %} 
+            
+            
+            
+            
+            
+            
+            
+        </div>
+    </div>
+</section>
+
+    
+  </div>
+  <div class="tab-pane fade" id="ex3-tabs-2" role="tabpanel" aria-labelledby="ex3-tab-2">
+    
+
+<section id="about-section" class="pt-5 pb-5">
+    <div class="container wrapabout">
+        <div class="red"></div>
+        <div class="row">
+          {{ render(controller( 'App\\Controller\\AtelierController::AtelierRadio' )) }}
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  <div class="tab-pane fade" id="ex3-tabs-3" role="tabpanel" aria-labelledby="ex3-tab-3">
+   
+
+<div class="container">
+
+ <ul class="nav nav-tabs nav-justified mb-3   radio_barre" id="ex1" role="tablist">
+  <li class="nav-item" role="presentation">
+
+    <a class="nav-link active" id="ex3-tab-4" data-bs-toggle="tab" href="#ex3-tabs-4"
+      role="tab"aria-controls="ex3-tabs-4"aria-selected="true">LUNDI</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-5" data-bs-toggle="tab" href="#ex3-tabs-5"
+ role="tab" aria-controls="ex3-tabs-5" aria-selected="false" >MARDI</a >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-6" data-bs-toggle="tab"
+      href="#ex3-tabs-6"role="tab"aria-controls="ex3-tabs-6"aria-selected="false">MERCREDI</a >
+  </li>
+   <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-7" data-bs-toggle="tab"
+      href="#ex3-tabs-7"role="tab"aria-controls="ex3-tabs-7"aria-selected="false">JEUDI</a >
+  </li>
+   <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-8" data-bs-toggle="tab"
+      href="#ex3-tabs-8"role="tab"aria-controls="ex3-tabs-8"aria-selected="false">VENDREDI</a >
+  </li>
+   <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-9" data-bs-toggle="tab"
+      href="#ex3-tabs-9"role="tab"aria-controls="ex3-tabs-9"aria-selected="false">SAMEDI</a >
+  </li>
+   <li class="nav-item" role="presentation">
+    <a class="nav-link" id="ex3-tab-10" data-bs-toggle="tab"
+      href="#ex3-tabs-10"role="tab"aria-controls="ex3-tabs-10"aria-selected="false">Dimanche</a >
+  </li>
+   
+</ul>
+
+<div class="tab-content" id="ex2-content">
+  <div class="tab-pane fade show active" id="ex3-tabs-4" role="tabpanel" aria-labelledby="ex3-tab-4" >
+    
+
+  <div class="container">
+    <div class="row">
+    {%  for programmes in programme  %}
+    {% if programmes.categorieProgramme.jour == 'Lundi' %}
+        <div class="col-md-4">
+            <div class="carbon-example flex-wrapper">
+                <img src="https://www.bootdey.com/image/200x200/FFB6C1/000000" alt="example design logo">
+                <div class="inner-wrapper">
+                  <p>{{programmes.title}}.</p>
+                 <p>{{programmes.duree}}.</p>
+                  <p class="fine-print">ads via Carbon</p>
+                </div>
+            </div>
+        </div>
+         {% endif %} 
+        {% endfor %}
+    </div>
+</div>
+
+
+  </div>
+    <div class="tab-pane fade" id="ex3-tabs-5" role="tabpanel" aria-labelledby="ex3-tab-5">
+            <div class="container">
+                <div class="row">
+                {%  for programmes in programme  %}
+                {% if programmes.categorieProgramme.jour == 'Mardi' %}
+                    <div class="col-md-4">
+                        <div class="carbon-example flex-wrapper">
+                            <img src="https://www.bootdey.com/image/200x200/FFB6C1/000000" alt="example design logo">
+                            <div class="inner-wrapper">
+                            <p>{{programmes.title}}.</p>
+                            <p>{{programmes.duree}}.</p>
+                            <p class="fine-print">ads via Carbon</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %} 
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+
+
+
+        <div class="tab-pane fade" id="ex3-tabs-6" role="tabpanel" aria-labelledby="ex3-tab-6">
+            <div class="container">
+                <div class="row">
+                    {%  for programmes in programme  %}
+                    {% if programmes.categorieProgramme.jour == 'Mercredi' %}
+                    <div class="col-md-4">
+                        <div class="carbon-example flex-wrapper">
+                            <img src="https://www.bootdey.com/image/200x200/FFB6C1/000000" alt="example design logo">
+                            <div class="inner-wrapper">
+                            <p>{{programmes.title}}.</p>
+                             <p>{{programmes.duree}}.</p>
+                            <p class="fine-print">ads via Carbon</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %} 
+                    {% endfor %}
+                 </div>
+            </div>
+        </div>
+    <div class="tab-pane fade" id="ex3-tabs-7" role="tabpanel" aria-labelledby="ex3-tab-7">
+       <div class="container">
+                <div class="row">
+                    {%  for programmes in programme  %}
+                    {% if programmes.categorieProgramme.jour == 'jeudi' %}
+                    <div class="col-md-4">
+                        <div class="carbon-example flex-wrapper">
+                            <img src="https://www.bootdey.com/image/200x200/FFB6C1/000000" alt="example design logo">
+                            <div class="inner-wrapper">
+                            <p>{{programmes.title}}.</p>
+                              <p>{{programmes.duree}}.</p>
+                            <p class="fine-print">ads via Carbon</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %} 
+                    {% endfor %}
+                 </div>
+            </div>
+ 
+    </div>
+     <div class="tab-pane fade" id="ex3-tabs-8" role="tabpanel" aria-labelledby="ex3-tab-8">
+             <div class="container">
+                <div class="row">
+                    {%  for programmes in programme  %}
+                    {% if programmes.categorieProgramme.jour == 'Vendredi ' %}
+                    <div class="col-md-4">
+                        <div class="carbon-example flex-wrapper">
+                            <img src="https://www.bootdey.com/image/200x200/FFB6C1/000000" alt="example design logo">
+                            <div class="inner-wrapper">
+                            <p>{{programmes.title}}.</p>
+                             <p>{{programmes.duree}}.</p>
+                            <p class="fine-print">ads via Carbon</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %} 
+                    {% endfor %}
+                 </div>
+            </div>
+ 
+    </div>
+   
+     <div class="tab-pane fade" id="ex3-tabs-9" role="tabpanel" aria-labelledby="ex3-tab-9">
+            <div class="container">
+                <div class="row">
+                    {%  for programmes in programme  %}
+                    {% if programmes.categorieProgramme.jour == 'Dimanche' %}
+                    <div class="col-md-4">
+                        <div class="carbon-example flex-wrapper">
+                            <img src="https://www.bootdey.com/image/200x200/FFB6C1/000000" alt="example design logo">
+                            <div class="inner-wrapper">
+                            <p>{{programmes.title}}.</p>
+                             <p>{{programmes.duree}}.</p>
+                            <p class="fine-print">ads via Carbon</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %} 
+                    {% endfor %}
+                 </div>
+            </div>
+    </div>
+    <div class="tab-pane fade" id="ex3-tabs-10" role="tabpanel" aria-labelledby="ex3-tab-10">
+            <div class="container">
+                <div class="row">
+                    {%  for programmes in programme  %}
+                    {% if programmes.categorieProgramme.jour == 'Samedi' %}
+                    <div class="col-md-4">
+                        <div class="carbon-example flex-wrapper">
+                            <img src="https://www.bootdey.com/image/200x200/FFB6C1/000000" alt="example design logo">
+                            <div class="inner-wrapper">
+                            <p>{{programmes.title}}.</p>
+                            <p>{{programmes.duree}}.</p>
+                            <p class="fine-print">ads via Carbon</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %} 
+                    {% endfor %}
+                 </div>
+            </div>
+       
+					</section>
+
+			</div>
+{% endblock %}

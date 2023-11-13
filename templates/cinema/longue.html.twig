@@ -1,0 +1,48 @@
+{% extends 'base_menu.html.twig' %}
+
+{% block title %}Cinéma!{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+       
+                           <section>
+    <div class="container">
+        <br>
+        <div class="row">
+         <div>
+                            <h2 class="text-center">Long-métrage</h2>
+                            <p class="display-30 text-center">Gravida proin nibh vel velit auctor alique.</p>
+                           
+                        </div>
+                        {% for  longues in longue  %}
+            <div class="col-sm-6 col-lg-4 mb-1-9">
+                <div class="card-wrapper">
+                    <div class="card-img"><img src="https://www.bootdey.com/image/400x400/FFB6C1/000000" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="h5">{{longues.title}} </h3>
+                            <p class="display-30">Proin gravida nibh vel velit auctor alique.</p>
+                            <a href="{{ path('app_lbyone',{'id' : longues.id})}}" class="read-more">voir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            
+            
+            
+            
+            
+             
+        </div>
+    </div>
+</section>
+       
+					</section>
+
+			</div>
+{% endblock %}

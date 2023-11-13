@@ -1,16 +1,142 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<meta content="" name="keywords">
+		<meta content="" name="description">
+		<title>
+			{% block title %}Mantes_Talents!
+			{% endblock %}
+		</title>
 
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+
+		<!-- Ouvrir les données du graphique -->
+
+		<meta
+		name="description" content="Mantes-Talents, est une plateforme, ayant pour objectif
+			de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses environs,
+			 afin de faire émerger et cultiver le potentiel de tous ! ..."/>
+		<!-- Google Authorship and Publisher Markup -->
+		<link rel="author" href="https://plus.google.com/[Google+_Profile]/posts"/>
+		<link
+		rel="publisher" href="https://plus.google.com/[Google+_Page_Profile]"/>
+
+		<!-- Schema.org markup for Google+ -->
+		<meta itemprop="name" content="The Name or Title Here">
+		<meta itemprop="description" content="This is the page description">
+		<meta
+		itemprop="image" content="http://www.example.com/image.jpg">
+
+		<!-- Twitter Card data -->
+		<meta name="twitter:card" value="summary">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="https://mantestalent.com/">
+		<meta name="twitter:title" content="Page Title">
+		<meta name="twitter:description" content="Mantes-Talents, est une plateforme, ayant pour objectif
+			de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses environs,
+			 afin de faire émerger et cultiver le potentiel de tous ">
+		<meta
+		name="twitter:creator" content="@author_handle">
+		<!-- Twitter summary card with large image must be at least 280x150px -->
+		<meta
+		name="twitter:image:src" content="http://www.example.com/image.html">
+
+		<!-- Open Graph data -->
+
+		<meta property="og:type" content="website"/>
+		<meta property="og:url" content="https://mantestalent.com/"/>
+		<meta property="og:image" content="http://example.com/image.jpg"/>
+		<meta property="og:description" content="Mantes-Talents, est une plateforme, ayant pour objectif
+			de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses environs,
+			 afin de faire émerger et cultiver le potentiel de tous "/>
+		<meta property="og:site_name" content="Mantes_Talents"/>
+		<meta
+		property="og:title" content="Meta Tags — Preview, Edit and Generate">
+
+
+		<!--!-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ asset('assets/css/main.css')}}">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css"/></noscript>
+
+
+		<!-- Responsive free-->
+
+
+		<!-- Responsive-->
+
+		<!-- fevicon -->
+
+		<!-- Scrollbar Custom CSS -->
+
+		<!-- Tweaks for older IEs-->
+
+
+			<style>
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+@media(min-width: 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+		</style>{% block stylesheets %}
+	{% endblock %}
+
+	</head>
+
+
+		<body class="is-preload"> {% for message in app.session.flashBag.get('info') %}
+
+			<div class="alert alert-info" role="alert">
+				{{message}}
+			</div>
+		{% endfor %}
+
+		{% for message in app.session.flashBag.get('success') %}
+
+			<div class="alert alert-success" role="alert">
+				{{message}}
+			</div>
+		{% endfor %}
+
+		{% for message in app.session.flashBag.get('error') %}
+
+			<div class="alert alert-danger" role="alert">
+				{{message}}
+			</div>
+		{% endfor %}
+		{% block body %}{% endblock %}
+		{#% include "footer.html.twig" %#}
+		<script src="https://code.jquery.com/jquery-3.6.4.js" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+		{% block javascripts %}{% endblock %}
+		<script src="{#{ asset('assets/jquery/jQuery.js')}#}"></script>
+
+
+		<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+		<script src="{{ asset('assets/js/jquery.scrollex.min.js')}}"></script>
+		<script src="{{ asset('assets/js/jquery.scrolly.min.js')}}"></script>
+		<script src="{{ asset('assets/js/browser.min.js')}}"></script>
+		<script src="{{ asset('assets/js/breakpoints.min.js')}}"></script>
+		<script src="{{ asset('assets/js/util.js')}}"></script>
+		<script src="{{ asset('assets/js/main.js')}}"></script>
+
+
+	</body>
 </html>

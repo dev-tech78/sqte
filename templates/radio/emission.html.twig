@@ -1,0 +1,174 @@
+{% extends 'base_menu.html.twig' %}
+
+{% block title %}Radio!{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+     
+                    <div class="idance">
+    <div class="schedule content-block">
+        <div class="container">
+           <br> <h2 data-aos="zoom-in-up" class="aos-init aos-animate">Schedule</h2>
+        
+            <div class="timetable">
+        
+              <!-- Schedule Top Navigation 
+              <nav class="nav nav-tabs">
+                <a class="nav-link active">Mon</a>
+                <a class="nav-link">Tue</a>
+                <a class="nav-link">Wed</a>
+                <a class="nav-link">Thu</a>
+                <a class="nav-link">Fri</a>
+                <a class="nav-link">Sat</a>
+                <a class="nav-link">Sun</a>
+              </nav> -->
+        
+              <div class="tab-content">
+                <div class="tab-pane show active">
+                  <div class="row">
+        
+                    <!-- Schedule Item 1 -->
+                    {% for emissions in prodect %}
+                    <div class="col-md-6">
+                      <div class="timetable-item">
+                        <div class="timetable-item-img">
+                          <img src="https://www.bootdey.com/image/100x80/FFB6C1/000000" alt="Contemporary Dance">
+                        </div>
+                        <div class="timetable-item-main">
+                          <div class="timetable-item-time">{{emissions.title}}:  le {{emissions.createdAt| date('d/m/y')}} </div>
+                        
+                           <div class="timetable-item-name">{{emissions.duree}}</div>
+                            <audio controls>
+                            <source src="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3"  type="audio/mp3">
+                            </audio> 
+
+                          <div class="timetable-item-like">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <div class="timetable-item-like-count">{{app.session.get('nbFavorite')}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        {% endfor %}
+                    <!-- Schedule Item 2 --
+                    <div class="col-md-6">
+                      <div class="timetable-item">
+                        <div class="timetable-item-img">
+                          <img src="https://www.bootdey.com/image/100x80/00FFFF/000000" alt="Break Dance">
+                        </div>
+                        <div class="timetable-item-main">
+                          <div class="timetable-item-time">5:00pm - 6:00pm</div>
+                          <div class="timetable-item-name">Break Dance</div>
+                          <audio controls>
+                            <source src="https://ia804506.us.archive.org/30/items/background-music-guitar-soundtrack-free/guitarsheaven.mp3"  type="audio/mp3">
+                            </audio> 
+                          <div class="timetable-item-like">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <div class="timetable-item-like-count">28</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <!-- Schedule Item 3 --
+                    <div class="col-md-6">
+                      <div class="timetable-item">
+                        <div class="timetable-item-img">
+                          <img src="https://www.bootdey.com/image/100x80/8A2BE2/000000" alt="Street Dance">
+                        </div>
+                        <div class="timetable-item-main">
+                          <div class="timetable-item-time">5:00pm - 6:00pm</div>
+                          <div class="timetable-item-name">Street Dance</div>
+                            <audio controls>
+                            <source src="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3"  type="audio/mp3">
+                            </audio> 
+                          <div class="timetable-item-like">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <div class="timetable-item-like-count">28</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <!-- Schedule Item 4 --
+                    <div class="col-md-6">
+                      <div class="timetable-item">
+                        <div class="timetable-item-img">
+                          <img src="https://www.bootdey.com/image/100x80/6495ED/000000" alt="Yoga">
+                        </div>
+                        <div class="timetable-item-main">
+                          <div class="timetable-item-time">7:00pm - 8:00pm</div>
+                          <div class="timetable-item-name">Yoga</div>
+                           <audio controls>
+                            <source src="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3"  type="audio/mp3">
+                            </audio> 
+                          <div class="timetable-item-like">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <div class="timetable-item-like-count">23</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <!-- Schedule Item 5 --
+                    <div class="col-md-6">
+                      <div class="timetable-item">
+                        <div class="timetable-item-img">
+                          <img src="https://www.bootdey.com/image/100x80/00FFFF/000000" alt="Stretching">
+                        </div>
+                        <div class="timetable-item-main">
+                          <div class="timetable-item-time">6:00pm - 7:00pm</div>
+                          <div class="timetable-item-name">Stretching</div>
+                           <audio controls>
+                            <source src="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3"  type="audio/mp3">
+                            </audio> 
+                          <div class="timetable-item-like">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <div class="timetable-item-like-count">14</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <!-- Schedule Item 6 --
+                    <div class="col-md-6">
+                      <div class="timetable-item">
+                        <div class="timetable-item-img">
+                          <img src="https://www.bootdey.com/image/100x80/008B8B/000000" alt="Street Dance">
+                        </div>
+                        <div class="timetable-item-main">
+                          <div class="timetable-item-time">8:00pm - 9:00pm</div>
+                          <div class="timetable-item-name">Street Dance</div>
+                           <audio controls>
+                            <source src="https://ia804506.us.archive.org/30/items/background-music-guitar-soundtrack-free/guitarsheaven.mp3"  type="audio/mp3">
+                            </audio> 
+                          <div class="timetable-item-like">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <div class="timetable-item-like-count">9</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> !-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+					</section>
+
+			</div>
+
+
+      
+{% endblock %}

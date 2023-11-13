@@ -1,0 +1,103 @@
+<?php
+
+
+namespace  App\Controller\Admin;
+
+use App\Entity\Documentaire;
+use App\Form\DocumentaireType;
+use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\DocumentaireRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
+#[Route('/ affichebacdoc')]
+class BackDocController  extends AbstractController
+{
+
+
+
+
+    #[Route('/adddocumentaire', name: 'app_doc')]
+    #[Route('/modifeactue/{id}/edit', name: 'modif.doc')]
+    public function form(Documentaire $doc  = null, 
+     Request $request, ManagerRegistry $entityManager,
+     SluggerInterface $slugger ): Response
+    {
+       if(!$doc){
+        $doc = new Documentaire();
+       }
+      
+       $form = $this->createForm(DocumentaireType::class, $doc);
+       $form->handleRequest($request);
+       if($form->isSubmitted()&& $form->isValid()){
+        if(! $doc->getId()){
+            $doc->setCreatedAt( new \DateTimeImmutable());
+        }
+      
+        $doc->setSlug($doc->getTitle());
+
+        $imageFile =  $form->get('image')->getData();
+        if ($imageFile) {
+            $imageoriginalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $imagFilename = $slugger->slug($imageoriginalFilename);
+            $newFilename = $imagFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+            try {
+                $imageFile->move(
+                    $this->getParameter('galerie_directory'),
+                    $newFilename
+                );
+            } catch (FileException $e) {
+            }  $doc->setImage($newFilename);
+        }
+
+        
+
+        $acte = $entityManager->getManager();
+        $acte->persist($doc);
+        $acte->flush();
+        $this->addFlash('message', 'Article ajouté avec succès');
+        return $this->redirectToRoute('app_actualites');
+       // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
+       }
+       
+       
+        return $this->render('admin/documentaire/ajouterdoc.html.twig', [
+            'form' => $form->createView(),
+            'editMode' =>  $doc->getId() !== null
+           
+        ]);
+    }
+
+
+    #[Route('/supprimerdocumentaire/{id?0}/delet', name: 'app_docdelete')]
+    public function UpdatActu(Documentaire $doc, 
+    ManagerRegistry $entityManager,
+  )
+    {
+        $em = $entityManager->getManager();
+            $em->remove($doc);
+            $em->flush();
+            $this->addFlash('message', 'Article supprimer avec succès');
+            return $this->redirectToRoute('app_addactue'); 
+    }
+
+
+    #[Route('/', name: 'app_affidocback')]
+    public function index(DocumentaireRepository $repository): Response
+    {
+        
+      
+      
+        $doc = $repository->findAll();
+        
+        return $this->render('admin/documentaire/index.html.twig', [
+            'documentaire' => $doc
+        ]);
+    }
+
+
+}
