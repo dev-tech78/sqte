@@ -6,11 +6,13 @@ use App\Repository\UserRepository;
 use App\Traits\TimeStamp;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
   
@@ -35,12 +37,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Profil $profil = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+  
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $updateAt = null;
-   
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
+ 
    
 
     public function getId(): ?int
@@ -121,6 +123,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfil(?Profil $profil): static
     {
         $this->profil = $profil;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

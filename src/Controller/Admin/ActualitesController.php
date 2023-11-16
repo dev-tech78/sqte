@@ -4,22 +4,27 @@
 namespace  App\Controller\Admin;
 
 use App\Entity\Actualites;
+use App\Service\PdfService;
 use App\Form\ActualitesType;
+use App\Service\MailerService;
 use App\Service\UploaderService;
 use App\Repository\ActualitesRepository;
-use App\Service\MailerService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-#[Route('/actudd')]
+#[Route('/admin/actudd'),
+IsGranted('ROLE_ADMIN')]
 class ActualitesController  extends AbstractController
 {
 
+    
+   
     #[Route('/', name: 'app_actu')]
     #[Route('/updateactue/{id}/edit', name: 'edit.actu')]
     public function form(Actualites $act  = null, 
@@ -75,6 +80,14 @@ class ActualitesController  extends AbstractController
         ]);
     }
 
+    #[Route('/pdf/{id}', name: 'app_pdf')]
+    public function Pdf(Actualites $act = null, PdfService $pdfService)
+    {
+        $html = $this->render('admin/actualite/pdf.html.twig',[
+            'pdf' => $act
+        ]);
+        $pdfService->showPdf($html);
+    }
 
     #[Route('/delteactue/{id}/delet', name: 'app_deletarticle')]
     public function UpdatActu(Actualites $act = null, 

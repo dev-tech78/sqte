@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^40.0.0",
     "bootstrap": "^5.3.2"
   }
 }

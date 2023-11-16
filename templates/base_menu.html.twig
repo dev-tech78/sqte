@@ -117,6 +117,13 @@ de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses enviro
 						<li><a href="boutique">boutique</a></li>
 					</ul>
 				</nav>
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <li><a class="drowpdown-item" href="{{ path('app_logout')}}">Logout</a></li>
+        {% else %}
+          <li><a class="drowpdown-item" href="{{ path('app_login')}}">Connexion</a></li>
+          <li><a class="drowpdown-item" href="{{ path('app_register')}}">Enregistrer</a></li>
+          {% endif %}
 			</header>
     
         {% block body %} {% endblock %}

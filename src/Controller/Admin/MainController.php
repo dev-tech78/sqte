@@ -3,10 +3,11 @@
 namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin', name: 'admin_')]
+#[Route('admin'), IsGranted('ROLE_ADMIN')]
 class MainController extends AbstractController
 {
     #[Route('/', name: 'index')]

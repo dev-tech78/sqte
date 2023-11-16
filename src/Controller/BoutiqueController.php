@@ -11,7 +11,7 @@ use Symfony\Polyfill\Intl\Idn\Info;
 
 class BoutiqueController extends AbstractController
 {
-    #[Route('/boutique', name: 'app_boutique')]
+    #[Route('/boutique', name: 'app_boutique',methods:['GET'])]
     public function index(Request $request): Response
     {
        
