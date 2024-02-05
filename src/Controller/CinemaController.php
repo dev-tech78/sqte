@@ -35,16 +35,16 @@ class CinemaController extends AbstractController
         $longue = $repos->findBy( ['categoriFiction' => '1'], ['id' => 'asc']);
         return $this->render('cinema/longue.html.twig', ['longue' => $longue ]);
     }
-//َaffichage  de fiction longumetrage par one 
+//َaffichage  de fiction longumetrage par Un --By One 
     #[Route('/cinema/{id<\d+>}', name: 'app_lbyone')]
     public function LongueMetrageByOne(Fiction $longue): Response
     {
         
-       if(!$longue){
-        $this->addFlash(type:'error', message: "Le film demmandé est pas disponible dans cette page");
-        return $this->redirectToRoute('app_lbyone');
-       }
-        return $this->render('cinema/longue.html.twig', ['longue' => $longue ]);
+    //    if(!$longue){
+    //     $this->addFlash(type:'error', message: "Le film demmandé est pas disponible dans cette page");
+    //     return $this->redirectToRoute('app_lbyone');
+    //    }
+        return $this->render('cinema/longmetragebyOne.html.twig', ['longue' => $longue ]);
     }
 
 
@@ -54,9 +54,11 @@ class CinemaController extends AbstractController
     public function courMetrage(FictionRepository $repos): Response
     {
         
-        $court = $repos->findBy( ['categoriFiction' => '2'], ['id' => 'asc'],1);
+        $court = $repos->findBy( ['categoriFiction' => '2'], ['id' => 'asc']);
         return $this->render('cinema/court.html.twig', ['court' => $court ]);
     }
+
+    //Affichage de film court-metrage By One
     #[Route('/cinema/{id<\d+>}/courtmetrage', name: 'app_court.lbyone')]
     public function CourtMetrageByOne(Fiction $court): Response
     {
@@ -65,7 +67,7 @@ class CinemaController extends AbstractController
         $this->addFlash(type:'error', message: "Le film demmandé est pas disponible dans cette page");
         return $this->redirectToRoute('app_lbyone');
        }
-        return $this->render('cinema/longmetragebyOne.html.twig', ['longue' => $court ]);
+        return $this->render('cinema/courtrbyOne.html.twig', ['longue' => $court ]);
     }
 
    

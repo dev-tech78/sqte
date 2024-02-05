@@ -1,0 +1,75 @@
+{% extends 'base_menu.html.twig' %}
+
+{% block title %}Don!
+{% endblock %}
+
+{% block body %}
+
+
+	
+		
+			<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center pb-5 mb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate fadeInUp ftco-animated">
+                <h2>Affordable Packages</h2>
+            </div>
+        </div>
+        <div class="row">
+         {% for soutiens in soutien %}
+            <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+           
+                <div class="block-7">
+                    <div class="img" style="background-image: url(https://www.bootdey.com/image/350x280/FFB6C1/000000);"></div>
+                    <div class="text-center p-4">
+                        <h3 class="excerpt d-block">{{soutiens.title}}</h3>
+                        <span class="price"><sup>€</sup> <span class="number">Abonner</span> <sub>/mos</sub></span>
+                       <!-- <ul class="pricing-text mb-5">
+                            <li><a class="fa fa-check mr-2"></a>5 Dog Walk</li>
+                            <li><span class="fa fa-check mr-2"></span>3 Vet Visit</li>
+                            <li><span class="fa fa-check mr-2"></span>3 Pet Spa</li>
+                            <li><span class="fa fa-check mr-2"></span>Free Supports</li>
+                        </ul>!-->
+                        <a href="#" class="btn btn-primary d-block px-2 py-3">Continuer</a>
+                    </div>
+                </div>
+               
+            </div>
+             {% endfor %}
+            <!--<div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                <div class="block-7">
+                    <div class="img" style="background-image: url(https://www.bootdey.com/image/350x280/87CEFA/000000);"></div>
+                    <div class="text-center p-4">
+                        <span class="excerpt d-block">Business</span>
+                        <span class="price"><sup>€</sup> <span class="number">10</span> <sub>/mos</sub></span>
+                       <!-- <ul class="pricing-text mb-5">
+                            <li><span class="fa fa-check mr-2"></span>5 Dog Walk</li>
+                            <li><span class="fa fa-check mr-2"></span>3 Vet Visit</li>
+                            <li><span class="fa fa-check mr-2"></span>3 Pet Spa</li>
+                            <li><span class="fa fa-check mr-2"></span>Free Supports</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary d-block px-2 py-3">Continuer</a>
+                    </div>
+                </div>
+            </div>!-->
+             <!--<div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                <div class="block-7">
+                    <div class="img" style="background-image: url(https://www.bootdey.com/image/350x280/FF7F50/000000);"></div>
+                    <div class="text-center p-4">
+                        <span class="excerpt d-block">Ultimate</span>
+                        <span class="price"><sup>€</sup> <span class="number">20</span> <sub>/mos</sub></span>
+                        <ul class="pricing-text mb-5">
+                            <li><span class="fa fa-check mr-2"></span>5 Dog Walk</li>
+                            <li><span class="fa fa-check mr-2"></span>3 Vet Visit</li>
+                            <li><span class="fa fa-check mr-2"></span>3 Pet Spa</li>
+                            <li><span class="fa fa-check mr-2"></span>Free Supports</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary d-block px-2 py-3">Continuer</a>
+                    </div>
+                </div>
+            </div>!-->
+        </div>
+    </div>
+</section>
+
+			{% endblock %}

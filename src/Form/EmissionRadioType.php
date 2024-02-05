@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\EmissionRadio;
 use App\Entity\CategorieRadio;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
@@ -21,13 +22,17 @@ class EmissionRadioType extends AbstractType
             ->add('title',TextType::class)
             ->add('presentateur',TextType::class)
             ->add('lien',TextType::class)
-            ->add('discription',TextareaType::class,[
+            //->add('createdAt')
+            ->add('discription',CKEditorType::class,[
 
                 'attr' =>['placeholder' => "Contenu de l'article"]
             ])
             ->add('categorieRadio',EntityType::class, [
                 'class' => CategorieRadio::class,
                 'choice_label' => 'nom',
+                'attr' => [
+                    'class' => 'select2'
+                ]
               
              
                ])

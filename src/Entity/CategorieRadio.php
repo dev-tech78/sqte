@@ -21,6 +21,9 @@ class CategorieRadio
     #[ORM\OneToMany(mappedBy: 'categorieRadio', targetEntity: EmissionRadio::class)]
     private Collection $catradio;
 
+    #[ORM\Column(length: 160)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->catradio = new ArrayCollection();
@@ -69,6 +72,18 @@ class CategorieRadio
                 $catradio->setCategorieRadio(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

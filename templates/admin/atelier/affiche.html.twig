@@ -18,7 +18,7 @@
                   </div>
           </div>
    {#% endfor %#}
-      <h1 class="text-center">Coucou: </h1>
+      <h1 class="text-center"> </h1>
         <h3 class="text-center">La Liste des ateliers</h3>
         <a href="{{ path('app_addatelier') }}" class="btn btn-primary">Ajouter un atelier</a><br>
      <br><br>
@@ -64,6 +64,8 @@
       </div>
       <div class="modal-body">
        Vous étre sur le point de supprimer l'anonnce : {{ateliers.id}} titre,{{ateliers.titel}} ?
+         <img src="{{ asset('/upload/galerie/' ~ ateliers.image )}}" 
+                            class="img-fluid" alt="..." style="height: 450px; width: 330px;">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

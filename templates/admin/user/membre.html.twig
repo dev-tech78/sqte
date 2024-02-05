@@ -1,0 +1,85 @@
+{% extends 'baseback.html .twig' %}
+
+{% block title %}Radio!
+{% endblock %}
+
+{% block body %}
+
+
+	
+		
+			<main>
+				<div class="container">
+ 
+      <h1 class="text-center">La Liste des membres de l'association </h1>
+      
+        {# <a href="{{ path('app_actu') }}" class="btn btn-primary">Ajouter un membre</a><br> #}
+     <br><br>
+   <table class="table table-bordered border-primary">
+
+  <thead>
+    <tr>
+     <th scope="col">Nom</th>
+    <th scope="col">Date </th>
+    <th scope="col">Poste</th>
+    <th scope="col">image</th>
+    <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {# <td data-label="image"><img src="{{ asset('/upload/galerie/' ~ articles.image )}}" 
+                            class="img-fluid" alt="..." style="height: 150px; width: 130px;"></td> #}
+   {#% for anonnces in app.user.adverTs %#}
+   {%  for membres in membre %}
+    <tr  {% if loop.index is odd %} info {% else %} warning {% endif  %} >
+      <td data-label="Titre">{{membres.name }}</td>
+      <td data-label="Date">{{membres.createdAt | date('d/m/y')}} à: {{ membres.createdAt | date('H:i') }} </td>
+      <td data-label="Contenu">{{membres.poste|u.truncate(255, '...')|raw }}</td>
+     <td data-label="image"><img src="{{ asset('/upload/galerie/' ~ membres.avatar )}}" 
+                            class="img-fluid" alt="..." style="height: 90px; width: 90px;"></td> 
+      <td data-label="Action">
+      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Action
+</button>
+<div class="btn-group" role="group">
+<button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle"  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                    <a class="dropdown-item" href="{{path('edit.profil',{'id': app.user.profil.id|default('undefined')})}}"><i class="fa-solid fa-user-pen"></i>Modifier</a>
+                    <a class="dropdown-item"   href="{{path('app_deletarticle',{'id':membres.id})}}" data-bs-toggle="modal" data-bs-target="#exampleModal2{{membres.id}}" >Suprrimer</a>
+                  
+                  </div>
+                </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2{{membres.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="useraction">
+      <div class="modal-header">
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       Vous étre sur le point de supprimer l'émissions : {{membres.id}} titre,{{membres.name}} ?
+       <img src="{{ asset('/upload/galerie/' ~ membres.avatar )}}" 
+                            class="img-fluid" alt="..." style="height: 330px; width: 330px;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        	<a type="button" href="{{path('app_deletarticle',{'id': membres.id})}}" class="btn btn-primary">Suprrimer</a>
+      </div>
+    </div>
+  </div>
+</div>
+      </td>
+    </tr>
+    
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+     </div>
+				</main>
+
+
+			{% endblock %}

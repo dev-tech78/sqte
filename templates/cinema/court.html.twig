@@ -20,11 +20,12 @@
                         {% for courts in court %}
             <div class="col-sm-6 col-lg-4 mb-1-9">
                 <div class="card-wrapper">
-                    <div class="card-img"><img src="https://www.bootdey.com/image/400x400/FFB6C1/000000" alt="..."></div>
+                    <div class="card-img"><img src="{{ asset('/upload/galerie/' ~ courts.image )}}" alt="..."></div>
                     <div class="card-body">
                         <div>
-                            <h3 class="h5">titre de film </h3>
-                            <p class="display-30">Proin gravida nibh vel velit auctor alique.</p>
+                            <h3 class="h5">{{courts.title}} </h3>
+                            <p class="display-30">{{courts.realisateur }}
+                            .</p>
                             <a href="{{ path('app_court.lbyone', {'id': courts.id})}}" class="read-more">voir plus</a>
                         </div>
                     </div>

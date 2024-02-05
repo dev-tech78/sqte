@@ -1,37 +1,117 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_menu.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
-
+{% block title %}Connexion!{% endblock %}
+     
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+ <style>
+				
+.account-block {
+    padding: 0;
+    background-image: url(https://www.bootdey.com/image/500x500/FFB6C1/000000);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+}
+.account-block .overlay {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.account-block .account-testimonial {
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+    bottom: 3rem;
+    left: 0;
+    right: 0;
+}
+.text-theme {
+    color: #5369f8 !important;
+}
+.btn-theme {
+    background-color: #5369f8;
+    border-color: #5369f8;
+    color: #fff;
+}
+			</style>
+
+<br><br><br>
+<div id="main-wrapper" class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-10">
+            <div class="card border-0">
+                <div class="card-body p-0">
+                    <div class="row no-gutters">
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="mb-5">
+                                    <h3 class="h4 font-weight-bold text-theme">Se connecter</h3>
+                                </div>
+                                {# <h6 class="h5 mb-0">Just Do Register.</h6>
+                                <p class="text-muted mt-2 mb-5">If You Really Want To Know, Look In The Register.</p> #}
+                                <form method="post">
+                                     {% if error %}
+                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    {% endif %}
+
+                                    {% if app.user %}
+                                        <div class="mb-3">
+                                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                        </div>
+                                    {% endif %}
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" value="{{ last_username }}" name="email" class="form-control" id="inputEmail"
+                                        autocomplete="email" required autofocus />
+                                    </div>
+                                    <div class="form-group mb-5">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" name="password" class="form-control" id="inputPassword" 
+                                        autocomplete="current-password" required />
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+                                    </div>
+                                    {# <div class="checkbox mb-3">
+                                        <label> souvenir 
+                                        <input type="checkbox" name="_remember_me" Remember me
+                                    </label>
+                                        </div> #}
+                                    <button type="submit" class="btn btn-theme">Connexion</button>
+                                    <div class="foot-lnk">
+					                <a style="color:black; font-size: 12px;" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié?</a>
+				</div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-none d-lg-inline-block">
+                            <div class="account-block rounded-right">
+                                <div class="overlay rounded-right"></div>
+                                <div class="account-testimonial">
+                                    <h4 class="text-white mb-4">This beautiful theme yours!</h4>
+                                    <p class="lead text-white">"Best investment i made for a long time. Can only recommend it for other users."</p>
+                                    <p>- Admin User</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+            {# <p class="text-muted text-center mt-3 mb-0">Already have an account? <a href="login.html" class="text-primary ml-1">login</a></p> #}
+            <!-- end row -->
         </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    <div class="checkbox mb-3">
-    <label> souvenir 
-    <input type="checkbox" name="_remember_me" Remember me
-   </label>
+        <!-- end col -->
     </div>
-
-    <button class="btn btn-lg btn-primary" type="submit">
-       Connexion
-    </button>
-</form>
+    <!-- Row -->
+</div>
 {% endblock %}

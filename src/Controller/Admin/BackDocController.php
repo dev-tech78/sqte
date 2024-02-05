@@ -25,12 +25,13 @@ class BackDocController  extends AbstractController
     #[Route('/modifeactue/{id}/edit', name: 'modif.doc')]
     public function form(Documentaire $doc  = null, 
      Request $request, ManagerRegistry $entityManager,
-     SluggerInterface $slugger ): Response
+     SluggerInterface $slugger, ): Response
     {
        if(!$doc){
         $doc = new Documentaire();
+       
        }
-      
+       $new = true;
        $form = $this->createForm(DocumentaireType::class, $doc);
        $form->handleRequest($request);
        if($form->isSubmitted()&& $form->isValid()){
@@ -59,9 +60,18 @@ class BackDocController  extends AbstractController
         $acte = $entityManager->getManager();
         $acte->persist($doc);
         $acte->flush();
-        $this->addFlash('message', 'Article ajouté avec succès');
-        return $this->redirectToRoute('app_actualites');
-       // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
+        if($new) {
+            $message = " a été ajouté avec succès";
+           // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+        }else{
+            $message = " a été mis à jour avec succès";
+           // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+        }
+        $this->addFlash(type: 'success', message: $doc->getTitle().  ' '.$message);
+       // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+        //$mailer->sendEmail(content: $mailMessage);
+        return $this->redirectToRoute('app_affidocback');
+        // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
        }
        
        

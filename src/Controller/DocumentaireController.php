@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Documentaire;
 use App\Repository\DocumentaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,9 +26,10 @@ class DocumentaireController extends AbstractController
     }
 
     #[Route('/{id<\d+>}{slug}', name: 'app_doclong')]
-    public function doclong(): Response
+    public function doclong(Documentaire $doc): Response
     {
-        return $this->render('documentaire/doclonbyone.html.twig', [
+        return $this->render('documentaire/docurt.html.twig', [
+            'doc' =>$doc
          
         ]);
     }

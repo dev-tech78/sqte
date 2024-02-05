@@ -21,16 +21,27 @@ class Image
     #[ORM\Column(length: 120)]
     private ?string $lien = null;
 
-    #[ORM\ManyToMany(targetEntity: CategorieImage::class, mappedBy: 'catImage')]
-    private Collection $categorieImages;
+  
 
     #[ORM\ManyToOne(inversedBy: 'imageline')]
     private ?Fiction $fiction = null;
 
-    public function __construct()
-    {
-        $this->categorieImages = new ArrayCollection();
-    }
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $faceboock = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $instagram = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $snap = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $youtube = null;
+
+   
+
+
+   
 
     public function getId(): ?int
     {
@@ -61,32 +72,7 @@ class Image
         return $this;
     }
 
-    /**
-     * @return Collection<int, CategorieImage>
-     */
-    public function getCategorieImages(): Collection
-    {
-        return $this->categorieImages;
-    }
-
-    public function addCategorieImage(CategorieImage $categorieImage): static
-    {
-        if (!$this->categorieImages->contains($categorieImage)) {
-            $this->categorieImages->add($categorieImage);
-            $categorieImage->addCatImage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategorieImage(CategorieImage $categorieImage): static
-    {
-        if ($this->categorieImages->removeElement($categorieImage)) {
-            $categorieImage->removeCatImage($this);
-        }
-
-        return $this;
-    }
+    
 
     public function getFiction(): ?Fiction
     {
@@ -96,6 +82,54 @@ class Image
     public function setFiction(?Fiction $fiction): static
     {
         $this->fiction = $fiction;
+
+        return $this;
+    }
+
+    public function getFaceboock(): ?string
+    {
+        return $this->faceboock;
+    }
+
+    public function setFaceboock(?string $faceboock): static
+    {
+        $this->faceboock = $faceboock;
+
+        return $this;
+    }
+
+    public function getInstagram(): ?string
+    {
+        return $this->instagram;
+    }
+
+    public function setInstagram(?string $instagram): static
+    {
+        $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    public function getSnap(): ?string
+    {
+        return $this->snap;
+    }
+
+    public function setSnap(?string $snap): static
+    {
+        $this->snap = $snap;
+
+        return $this;
+    }
+
+    public function getYoutube(): ?string
+    {
+        return $this->youtube;
+    }
+
+    public function setYoutube(?string $youtube): static
+    {
+        $this->youtube = $youtube;
 
         return $this;
     }

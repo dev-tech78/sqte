@@ -1,0 +1,70 @@
+{% extends 'baseback.html .twig' %}
+
+{% block title %}Radio!
+{% endblock %}
+
+{% block body %}
+
+
+	
+	
+			<main>
+				<div class="container-fluid px-4">
+
+                    <br><br>
+					<h1 class="mt-4 text-center">
+						Ajouter un article !
+					</h1>
+					<div class="container">
+						<br><div class="mb-3">
+							{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+							<div class="row">
+							<div class="col">{{ form_row(form.name) }}</div>
+							<div class="col">{{ form_row(form.avatar , {'attr': {'placeholder': "Image de profil"}}) }}</div>
+                            
+							</div>
+							
+						</div>
+						<div class="row">
+							<div class="col-6"> {{ form_row(form.poste , {'attr': {'placeholder': " votre poste actuel dans l'association"}}) }}</div> 
+                            	<div class="col-6"> {{ form_row(form.formation , {'attr': {'placeholder': "formation"}}) }}</div>
+                               <div class="col-6"> {{ form_row(form.experience , {'attr': {'placeholder': "experience"}}) }}</div>
+                          <div class="col-6"> {{ form_row(form.contact , {'attr': {'placeholder': " votre contact"}}) }}</div>
+
+						</div>
+						
+						<div class="form-group" id="editor">
+							
+							
+						</div>
+
+						
+						<div class="mb-3">
+							<button type="submit" class="btn btn-success">
+								{% if editMode %}
+									Enregistrer
+								{% else %}
+									Ajouter l'article
+
+								{% endif %}
+
+							</button>
+						</div>
+
+
+						{{ form_end(form) }}
+
+
+					</div>
+				</main>
+
+
+			{% endblock %}
+{% block javascripts   %}
+
+		 <script> 
+			$(document).ready(function() {
+				$('.select2').select2();
+			});
+			</script>
+{% endblock %}

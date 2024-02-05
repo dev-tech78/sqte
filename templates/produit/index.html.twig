@@ -1,0 +1,103 @@
+{% extends 'base_menu.html.twig' %}
+
+{% block title %}Action!{% endblock %}
+
+{% block body %}
+<section id="pricing" >
+        <div class="container">
+            <h2 class="text-center">Soutenez SQTE, le souffle des jeunes talents !
+           Financez un media libre et indépendant en accès libre pour le plus grand nombre.</h2>
+            <div class="spacer spacer-line border-primary">&nbsp;</div>
+            <div class="spacer">&nbsp;</div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="pricing-table">
+                        <div class="pricing-table-title">
+                            <h5 class="pricing-title bg-info-hover text-white">Je fais un don</h5>
+                        </div>
+                        <div class="pricing-table-price text-center bg-info">
+                            <p class="title-font">
+                                <span class="pricing-period text-white mr-1">Défiscalisé à hauteur de 66%</span>
+                               
+                            </p>
+                        </div>
+                        <div class="pricing-table-content" style="height:350px!important;">
+                            <ul>
+                                
+                                <li ><p><strong style="color:black;">Je fais don à SQTE, le souffle de l'info
+                                Je suis un particulier : je bénéficie d'une réduction d'impôt à hauteur
+                                 de 66% dans la limite de 20% du montant imposable.
+                                Je suis une personne morale : je bénéficie d'une réduction d'impôt
+                                 à hauteur de 60% (dans la limite de 0,5% du chiffre d'affaires).
+                                Votre reçu fiscal vous sera directement envoyé par J'aime SQTE </strong></p></li>
+                            </ul>
+                            <div class="pricing-table-button">
+                                <a href="{#{ path('app_add',{id: produit.id})}#}" class="btn btn-info"><span>Je fais un don</span></a>
+                            </div><!-- / pricing-table-button -->
+                        </div><!-- / pricing-table-content -->
+                    </div><!-- / pricing-table -->
+                </div><!-- / column -->
+
+               <div class="col-md-4">
+                    <div class="pricing-table bg-lightgrey">
+                        <div class="pricing-table-title">
+                            <h5 class="pricing-title bg-primary-hover text-white">Je m'abonne</h5>
+                        </div>
+                        <div class="pricing-table-price text-center bg-primary">
+                            <p class="title-font">
+                                <span class="pricing-period text-white mr-1">Je garantis l'indépendance
+                                de SQTE.</span>
+                                
+                            </p>
+                        </div>
+                        <div class="pricing-table-content">
+                            <ul>
+                            
+                                <li><p> <strong style="color:black;"> J'ai accès à ; la Newsletter,</strong></p></li>
+                                <li><p><strong style="color:black;">le fil Telegram des Coulisses de SQTE,</strong></p></li>
+                                <li><p><strong style="color:black;">le forum des abonnés,</strong></p></li>
+                                <li><p><strong style="color:black;">les FAQ avec l'équipe,</strong></li>
+                                <li><p><strong style="color:black;">des masterclass,</strong></li>
+                                {# <li><p><strong style="color:black;">des invitations aux émissions spéciales,</strong> </p></li> #}
+                                 <li><p><strong style="color:black;">des invitations aux tournage cinéma&festivale.</strong> </p></li>
+                            </ul>
+                            <div class="pricing-table-button">
+                                <a href="#x" class="btn btn-primary"><span>Je m'abonne</span></a>
+                            </div><!-- / pricing-table-button -->
+                        </div><!-- / pricing-table-content -->
+                    </div><!-- / pricing-table -->
+                </div><!-- / column -->
+
+                <div class="col-md-4">
+                    <div class="pricing-table">
+                        <div class="pricing-table-title">
+                            <h5 class="pricing-title bg-info-hover text-white">Je m'écéne</h5>
+                        </div>
+                        <div class="pricing-table-price text-center bg-info">
+                            <p class="title-font">
+                                <span class="pricing-period text-white mr-1">Je garantis l'indépendance de SQTE.</span>
+                                {# <span class="pricing-currency text-white">$</span>
+                                <span class="pricing-price text-white">49.99</span>
+                                <span class="pricing-period text-white">/ Mo.</span> #}
+                            </p>
+                        </div>
+                        <div class="pricing-table-content" style="height:346px!important;">
+                            <ul>
+                                
+                                <li ><p><strong style="color:black;">Je fais don à SQTE, le souffle de l'info
+                                Je suis un particulier : je bénéficie d'une réduction d'impôt à hauteur
+                                 de 66% dans la limite de 20% du montant imposable.
+                                Je suis une personne morale : je bénéficie d'une réduction d'impôt
+                                 à hauteur de 60% (dans la limite de 0,5% du chiffre d'affaires).
+                                Votre reçu fiscal vous sera directement envoyé par J'aime SQTE </strong></p></li>
+                            </ul>
+                            <div class="pricing-table-button">
+                                <a href="#x" class="btn btn-info"><span>Je m'écéne</span></a>
+                            </div><!-- / pricing-table-button -->
+                        </div><!-- / pricing-table-content -->
+                    </div><!-- / pricing-table -->
+                </div><!-- / column -->
+            </div><!-- / row -->
+        </div><!-- / container -->
+    </section>
+{% endblock %}

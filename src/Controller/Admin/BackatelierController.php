@@ -7,6 +7,8 @@ use App\Entity\Atelier;
 
 
 use App\Form\AtelierType;
+use App\Service\MailerService;
+use App\Service\UploaderService;
 use App\Repository\AtelierRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,13 +35,17 @@ class BackatelierController extends AbstractController
 
     #[Route('/addlier', name: 'app_addatelier')]
     #[Route('/updateatelir/{id}/edit', name: 'app_edit')]
-    public function Add(Atelier $atelier = null, Request $request, ManagerRegistry $entityManager,
-    SluggerInterface $slugger ): Response
+    public function Add(Atelier $atelier = null, Request $request,
+     ManagerRegistry $entityManager,
+    SluggerInterface $slugger,
+    UploaderService $uploaderService,
+     MailerService $mailer): Response
     {
         
      
             if(!$atelier){
                 $atelier = new Atelier();
+                $new = true;
             }
        
             $form = $this->createForm(AtelierType::class,  $atelier);
@@ -52,31 +58,49 @@ class BackatelierController extends AbstractController
              $atelier->setSlug($atelier->getTitel());
      
              $imageFile =  $form->get('image')->getData();
-             if ($imageFile) {
-                 $imageoriginalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                 $imagFilename = $slugger->slug($imageoriginalFilename);
-                 $newFilename = $imagFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
-                 try {
-                     $imageFile->move(
-                         $this->getParameter('galerie_directory'),
-                         $newFilename
-                     );
-                 } catch (FileException $e) {
-                 } $atelier->setImage($newFilename);
-             }
+            //  if ($imageFile) {
+            //      $imageoriginalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            //      $imagFilename = $slugger->slug($imageoriginalFilename);
+            //      $newFilename = $imagFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+            //      try {
+            //          $imageFile->move(
+            //              $this->getParameter('galerie_directory'),
+            //              $newFilename
+            //          );
+            //      } catch (FileException $e) {
+            //      } $atelier->setImage($newFilename);
+            //  }
+            if ($imageFile) {
+                $derectory =  $this->getParameter('galerie_directory');    
+                $atelier ->setImage($uploaderService->UploaderFile($imageFile, $derectory));
+            }
      
              
      
              $acte = $entityManager->getManager();
              $acte->persist($atelier);
              $acte->flush();
-             $this->addFlash('message', 'Article ajouté avec succès');
-             return $this->redirectToRoute('app_actualites');
-            // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
-            }
 
-      $form = $this->createForm(AtelierType::class, $atelier);
-       $form->handleRequest($request);
+          
+             return $this->redirectToRoute('app_afficheatelier');
+            // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
+            if($new){
+                $message = "Atelier ajouter avec succés";
+                
+            // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+            }else{
+                $message = "a été mis à jour avec succès";
+            // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+            }
+            $this->addFlash(type: 'success', message: $atelier->getTitel().  $message);
+            // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+            //$mailer->sendEmail(content: $mailMessage);
+            return $this->redirectToRoute('app_afficheatelier');
+            // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
+                }
+
+    //   $form = $this->createForm(AtelierType::class, $atelier);
+    //    $form->handleRequest($request);
 
         
         return $this->render('admin/atelier/ajouter.html.twig', [

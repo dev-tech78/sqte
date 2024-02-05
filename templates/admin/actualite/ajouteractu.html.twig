@@ -7,32 +7,34 @@
 
 
 	
-		<div id="layoutSidenav_content">
+	
 			<main>
 				<div class="container-fluid px-4">
 
                     <br><br>
-					<h1 class="mt-4">
-						Création d'un article !
+					<h1 class="mt-4 text-center">
+						Ajouter un article !
 					</h1>
 					<div class="container">
 						<br><div class="mb-3">
 							{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-							{{ form_row(form.title) }}
+							<div class="row">
+							<div class="col-3">{{ form_row(form.title) }}</div>
+							<div class="col-3">{{ form_row(form.image , {'attr': {'placeholder': "Image de l'article"}}) }}</div>
+							</div>
+							
 						</div>
 						<div class="form-group">
-							{{ form_row(form.categorieActu , {'attr': {'placeholder': "Titre de l'article"}}) }}
+							<div class="col-3"> {{ form_row(form.categorieActu , {'attr': {'placeholder': "Titre de l'article"}}) }}</div> 
 
 						</div>
-						<p>message</p>
+						
 						<div class="form-group" id="editor">
-
+							{{ form_row(form.content , {'attr': {'placeholder': "Titre de l'article"}}) }}
 							
 						</div>
 
-						<div class="form-group">
-							{{ form_row(form.image , {'attr': {'placeholder': "Image de l'article"}}) }}
-						</div>
+						
 						<div class="mb-3">
 							<button type="submit" class="btn btn-success">
 								{% if editMode %}
@@ -55,9 +57,7 @@
 
 			{% endblock %}
 {% block javascripts   %}
- <script> 
- 		BalloonEditor.create(document.querySelector("#editor"));
-		 </script>
+
 		 <script> 
 			$(document).ready(function() {
 				$('.select2').select2();

@@ -1,0 +1,79 @@
+{% extends 'baseback.html .twig' %}
+
+{% block title %}Radio!
+{% endblock %}
+
+{% block body %}
+
+
+	
+		
+			<main>
+				<div class="container">
+ 
+      <h1 class="text-center">La Liste des articles </h1>
+      
+        <a href="{{ path('app_ajouter_don') }}" class="btn btn-primary">Ajouter un article</a><br>
+     <br><br>
+   <table class="table table-bordered border-primary">
+
+  <thead>
+    <tr>
+     <th scope="col">Titre</th>
+    <th scope="col">prix</th>
+    <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {# <td data-label="image"><img src="{{ asset('/upload/galerie/' ~ articles.image )}}" 
+                            class="img-fluid" alt="..." style="height: 150px; width: 130px;"></td> #}
+   {#% for anonnces in app.user.adverTs %#}
+   {%  for soutiens in soutien %}
+    <tr  {% if loop.index is odd %} info {% else %} warning {% endif  %} >
+      <td data-label="Titre">{{soutiens.title }}</td>
+    <td data-label="Titre"> <span class="number">{{soutiens.price}}<sup>€</sup></span> </td>
+      <td data-label="Action">
+      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Action
+</button>
+<div class="btn-group" role="group">
+<button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle"  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                    <a class="dropdown-item" href="{{ path('app_edit.don',{'id': soutiens.id}) }}"><i class="fa-solid fa-user-pen"></i>Modifier</a>
+                    <a class="dropdown-item"   href="{{path('app_deletDon',{'id': soutiens.id})}}" data-bs-toggle="modal" data-bs-target="#exampleModal2{{soutiens.id}}" >Suprrimer</a>
+                  
+                  </div>
+                </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2{{soutiens.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="useraction">
+      <div class="modal-header">
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       Vous étre sur le point de supprimer l'article : {{soutiens.id}} titre,{{soutiens.title}} ?
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        	<a type="button" href="{{path('app_deletarticle',{'id': soutiens.id})}}" class="btn btn-primary">Suprrimer</a>
+      </div>
+    </div>
+  </div>
+</div>
+      </td>
+    </tr>
+    
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+     </div>
+				</main>
+
+
+			{% endblock %}

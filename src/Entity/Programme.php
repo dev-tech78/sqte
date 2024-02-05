@@ -22,6 +22,15 @@ class Programme
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
 
+    #[ORM\ManyToOne(inversedBy: 'personaliser')]
+    private ?CategorieProgramme $categorieProgramme = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +68,42 @@ class Programme
     public function setText(string $text): static
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function getCategorieProgramme(): ?CategorieProgramme
+    {
+        return $this->categorieProgramme;
+    }
+
+    public function setCategorieProgramme(?CategorieProgramme $categorieProgramme): static
+    {
+        $this->categorieProgramme = $categorieProgramme;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

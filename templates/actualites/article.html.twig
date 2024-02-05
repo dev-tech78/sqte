@@ -1,6 +1,6 @@
 {% extends 'base_menu.html.twig' %}
 
-{% block title %}Hello ActualitesController!{% endblock %}
+{% block title %}Article!{% endblock %}
 
 {% block body %}
 <div id="wrapper">
@@ -16,7 +16,7 @@
                 <div class="col-lg-8 m-15px-tb">
                     <article class="article">
                         <div class="article-img">
-                            <img src="https://www.bootdey.com/image/800x350/87CEFA/000000" title="" alt="">
+                            <img src="{{ asset('/upload/galerie/' ~ article.image )}}" title="" alt="">
                         </div>
                         <div class="article-title">
                          
@@ -29,7 +29,7 @@
                                     <label>Rachel Roth</label>
 									 <div class="metadata"><p> Ecrit le {{ article.createdAt |date('d/m/y') }} 
 		 							 </p> 
-									    <p>Categorie <a href="#">{{ article.categorieActu.nom }}</a></p></div>
+									    {# <p>Categorie <a href="#">{{ article.categorieActu.nom }}</a></p></div> #}
                                  
                                 </div>
                             </div>
@@ -47,16 +47,38 @@
                             <a href="#">Managment</a>
                         </div>-->
                     </article>
-                    <div class="contact-form article-comment">
-                        <h4>Leave a Reply</h4>
-						{% for comment in  article.commentaire %}
-					 <p> {{ comment.email}}</p>
+                    <div class="contact article-comment">
+                        <h4 class="text-center">Ajouter un commentaire</h4>
+						 {% for comment in  article.comment %}
+					 {# <p> {{ comment.email}}</p> #}
 						<p> {{ comment.nom}}</p>
 						<p>{{ comment.content}} </p>
-						{% endfor %}
+						{% endfor %} 
+                                 
+                             {# {{ render(controller( 'App\\Controller\\CommentaireController::index' )) }} #}
 
-                             {{ render(controller( 'App\\Controller\\CommentaireController::index' )) }}
+                               {% if commentForm is defined %} 
+                        {{ form_start(commentForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                         {{ form_errors(commentForm) }} 
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                 {{form_row(commentForm.email) }}
+                            </div>
+                            
+                            <div class="col-12 col-sm-6">
+                                 {{form_row(commentForm.nom) }}
+                            </div> 
+                            <div class="col-12">
+                                  {{form_row(commentForm.content) }}
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">LAISSEZ UN COMMENTAIRE</button>
+                            </div>
+                        </div>
                    
+                          {{form_end(commentForm)}}
+                     {% endif %} 
+               
 
                         {# <form id="contact-form" action=""  method="POST">
                             <div class="row">
@@ -122,66 +144,30 @@
                             <h3>Derniers postes</h3>
                         </div>
                         <div class="widget-body">
+                        {% if poste is defined %} 
+                        {% for  postes in poste %}
                             <div class="latest-post-aside media">
                                 <div class="lpa-left media-body">
                                     <div class="lpa-title">
-                                        <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
+                                        <h5><a href="{{ path('app_article', {'id': postes.id,  'slug': postes.slug } )}}">{{postes.title}}</a></h5>
                                     </div>
                                     <div class="lpa-meta">
-                                        <a class="name" href="#">
+                                        <a class="name" href="">
                                             Rachel Roth
                                         </a>
                                         <a class="date" href="#">
-                                            26 FEB 2020
+                                           {{ postes.createdAt |date('d/m/y') }} 
                                         </a>
                                     </div>
                                 </div>
                                 <div class="lpa-right">
                                     <a href="#">
-                                        <img src="https://www.bootdey.com/image/400x200/FFB6C1/000000" title="" alt="">
+                                        <img src="{{ asset('/upload/galerie/' ~ article.image )}}" title="" alt="">
                                     </a>
                                 </div>
                             </div>
-                            <div class="latest-post-aside media">
-                                <div class="lpa-left media-body">
-                                    <div class="lpa-title">
-                                        <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
-                                    </div>
-                                    <div class="lpa-meta">
-                                        <a class="name" href="#">
-                                            Rachel Roth
-                                        </a>
-                                        <a class="date" href="#">
-                                            26 FEB 2020
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="lpa-right">
-                                    <a href="#">
-                                        <img src="https://www.bootdey.com/image/400x200/FFB6C1/000000" title="" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="latest-post-aside media">
-                                <div class="lpa-left media-body">
-                                    <div class="lpa-title">
-                                        <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
-                                    </div>
-                                    <div class="lpa-meta">
-                                        <a class="name" href="#">
-                                            Rachel Roth
-                                        </a>
-                                        <a class="date" href="#">
-                                            26 FEB 2020
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="lpa-right">
-                                    <a href="#">
-                                        <img src="https://www.bootdey.com/image/400x200/FFB6C1/000000" title="" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                            {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <!-- End Latest Post -->

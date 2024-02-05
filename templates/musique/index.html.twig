@@ -29,32 +29,35 @@
     <div class="container">
         <br>
         <div class="row">
+        {% for productions in production %}
             <div class="col-sm-6 col-lg-6 mb-1-9">
                 <div class="card-wrapper">
-                    <div class="card-img"><img src="https://www.bootdey.com/image/400x400/FFB6C1/000000" alt="..."></div>
+                    <div class="card-img"><img src="{{ asset('/upload/galerie/' ~ productions.image )}}" alt="..."></div>
                     <div class="card-body">
                         <div>
-                            <h3 class="h5">Composition sur demande </h3>
+                            <h3 class="h5">{{productions.titel}} </h3>
                             <p class="display-30"></p>
-                            <a href="{{ path('app_longrt_metrage')}}" class="read-more">voir plus</a>
+                            <a href="{{ path('app_production',{'slug': productions.slug })}}" class="read-more">voir plus</a>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
+            {% for enregistrements in enregistrement %}
             <div class="col-sm-6 col-lg-6 mb-1-9">
                 <div class="card-wrapper">
-                    <div class="card-img"><img src="https://www.bootdey.com/image/400x400/6495ED/000000" alt="..."></div>
+                    <div class="card-img"><img src="{{ asset('/upload/galerie/' ~ enregistrements.image )}}" alt="..."></div>
                     <div class="card-body">
                         <div>
-                            <h3 class="h5">Studio d'enregistrement</h3>
+                            <h3 class="h5">{{enregistrements.titel}}</h3>
                             <p class="display-30"></p>
-                            <a href="{{ path('app_court_metrage')}}" class="read-more">voir plus</a>
+                            <a href="{{ path('app_enregistrement',{'slug':enregistrements.slug })}}" class="read-more">voir plus</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            
+            {% endfor %}
+            {# https://www.bootdey.com/image/400x400/FFB6C1/000000 #}
             
             
             

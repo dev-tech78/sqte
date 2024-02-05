@@ -14,9 +14,11 @@
                             </audio>
 					<nav>
 						<ul>
-							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#actu">Actu</a></li>
+							{# <li><a href="#intro">Welcome</a></li> #}
+							<li><a href="#actu">Actualité</a></li>
 							<li><a href="#media">Media</a></li>
+							<li><a href="#cinema">Audiovisuel</a></li>
+							<li><a href="#musique">Musique</a></li>
 							<li><a href="#contact">contact</a></li>
 						</ul>
 					</nav>
@@ -31,10 +33,10 @@
 						<div class="inner">
                         
 							<h1>SANS QUE TU ERRES</h1>
-							<p>élablorer, accompagner, fomer informer, créer, professionnaliser </a><br />
+							<p style="color:white;">élablorer, accompagner, fomer informer, créer, professionnaliser </a><br />
 							et de promouvoir tous projets artistiques </a>.</p>
 							<ul class="actions">
-								<li><a href="#media" class="button scrolly">voir plus</a></li>
+								{# <li><a href="#media" class="button scrolly">voir plus</a></li> #}
 							</ul>
 						</div>
 					</section>
@@ -62,14 +64,15 @@
                             <div class="blog-img">
                                 <div class="date">{{articles.createdAt| date('d/m/y')}}</div>
                                 <a href="#">
-                                   <img src="images/media_11.png" title="" alt="">
+                                   <img src="{{ asset('/upload/galerie/' ~ articles.image )}}" title="" alt="">
                                 </a>
                             </div>
                             <div class="blog-info">
-                                <h5><a href="#">{{articles.title|u.truncate(50, '...')|capitalize}}</a></h5>
+                                <h5><a href="#">{{articles.title|u.truncate(40, '...')|capitalize}}</a></h5>
                                
                                 <div class="btn-bar">
-                                    <a href="{{ path('detail',{'id': articles.id, 'slug': articles.slug}) }}" class="px-btn-arrow">
+                                    <a href="{{ path('app_article',{'id': articles.id, 'slug': articles.slug}) }}" class="px-btn-arrow">
+									
 									
                                         <span>Lire plus</span>
                                         <i class="arrow"></i>
@@ -98,20 +101,20 @@
 							<div class="content">
 								<div class="inner">
 									<h2>Médias</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<p>SQTE média, une direction dédiée à la création de contenus   web radio .</p>
 									<ul class="actions">
-										<li><a href="generic.html" class="button">WebTv</a></li>
+											<!-- One <li><a href="generic.html" class="button">WebTv</a></li>-->
                                         <li><a href="{{ path('app_radio')}}" class="button">Radio</a></li>
 									</ul>
 								</div>
 							</div>
 						</section>
-						<section>
+						<section id="cinema">
 							<a href="#" class="image"><img src="images/clapper.png" alt="" data-position="top center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2> Cinémas</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<h2> Audiovisuel</h2>
+									<p>SQTE cinéma, une direction dédiée à la promotion et à la production des jeunes talents comédiens ..</p>
 									<ul class="actions">
 										<li><a href="{{ path('app_cinema') }}" class="button">voir plus</a></li>
 										
@@ -120,12 +123,12 @@
 								</div>
 							</div>
 						</section>
-						<section>
+						<section id="musique">
 							<a href="#" class="image"><img src="images/musique.png" alt="" data-position="25% 25%" /></a>
 							<div class="content">
 								<div class="inner">
 									<h2> Musiques</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<p>SQTE musique, une direction dédiée à la promotion et à la production des jeunes talents musicaux.</p>
 									<ul class="actions">
 										<li><a href="{{ path('app_musique') }}" class="button">voir plus</a></li>
 									</ul>
@@ -140,7 +143,7 @@
 					<section id="contact" class="wrapper style2 fade-up">
 						<div class="inner">
 							<h2>Entrer en contact avec nous</h2>
-							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<p></p>
 							<div class="split style1">
 								<section>
 									<form method="post" action="#">
@@ -154,12 +157,22 @@
 												<input type="text" name="email" id="email" />
 											</div>
 											<div class="field half">
-												<label for="nom">Non</label>
+												<label for="nom">Nom</label>
 												<input type="text" name="nom" id="name" />
 											</div>
 											<div class="field half">
-												<label for="nature">Nature</label>
-												<input type="text" name="nature" id="email" />
+												<label for="nature">Le service concerné</label>
+												{# <input type="text" name="nature" id="email" /> #}
+
+												<select name="nature" id="pet-select">
+												<option value="nature">--Choisi le service concerné--</option>
+												<option value="admin">Administrateur</option>
+												<option value="commercial">Commercial</option>
+												<option value="webtv">Web-tv</option>
+												<option value="radio">Radio-web</option>
+												<option value="cinema">Cinéma</option>
+												<option value="musique">Musique</option>
+												</select>
 											</div>
 											<div class="field">
 												<label for="message">Message</label>
@@ -183,10 +196,11 @@
 											<h3>Email</h3>
 											<a href="#">user@untitled.tld</a>
 										</li>
-										<li>
+										{# <li>
 											<h3>Phone</h3>
 											<span>(000) 000-0000</span>
-										</li>
+										</li> #}
+										
 										<li>
 											<h3>Social</h3>
 											<ul class="icons">
@@ -196,6 +210,10 @@
 												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
 											</ul>
+										</li>
+										<li>
+											<p>Mentions-légale | Condition de vente </p>
+											
 										</li>
 									</ul>
 								</section>

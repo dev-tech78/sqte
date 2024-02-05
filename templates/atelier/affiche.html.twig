@@ -62,6 +62,8 @@
       </div>
       <div class="modal-body">
        Vous étre sur le point de supprimer l'anonnce : {#{articles.id}} titre,{{articles.title}#} ?
+          <img src="{{ asset('/upload/galerie/' ~ articles.image )}}" 
+                            class="img-fluid" alt="..." style="height: 450px; width: 330px;">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

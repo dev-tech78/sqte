@@ -12,19 +12,25 @@
 
 
 <section id="team" class="team_area section-padding">
-	<div class="container">	
+	<br><div class="container">	
+
+
+
+
 
 
 
                         <div class="card text-center">
                         <div class="card-header">
-                            Featured
+                           {# <p> Featured</p> #}
                         </div>
-                        <div class="card-body">
-                        <img src="..." class="img-fluid" alt="...">
-                            <p class="card-title">Special title treatment</p>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                           
+                        <div class="card-body row">
+                        
+                           <div class="col"> <h3 class="card-title" style="color: black; ">{{longue.title}}</h3>
+                            <h3 class="card-title" style="color: black; ">Genre :{{longue.type}}</h3>
+                            <p class="card-text">{{longue.content|striptags|raw}}.</p></div>
+                            <div class="col"><img src="{{ asset('/upload/galerie/' ~ longue.image )}}" 
+                            class="img-fluid" alt="..." style="height: 650px; width: 550px;"></div>
                         </div>
                         
                         </div>
@@ -35,30 +41,33 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="section-title mb-4 pb-2">
-                    <h4 class="title mb-4">Our Business Minds</h4>
+                    <h4 class="title mb-4" style="color: black; ">Les Comédiens</h4>
                     <p class="text-muted para-desc mx-auto mb-0">Build responsive, mobile-first projects on the web with the world's most popular front-end component library.</p>
                 </div>
             </div><!--end col-->
         </div><!--end row-->
 
         <div class="row">
+        	{% for artiste in  longue.imageline %}
             <div class="col-lg-3 col-md-3  mt-4 pt-2">
                 <div class="team text-center rounded p-3 py-4">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
+                    <img src="{{ asset('/upload/galerie/' ~ artiste.lien )}}" class="card-img-top img-fluid  rounded-circle" style="  width: 100%;
+    height: 13vw;
+    object-fit: cover;" alt="">
                     <div class="content mt-3">
-                        <h4 class="title mb-0">Lisa Martin</h4>
+                        <p class="title mb-0" >{{artiste.nom}}</p>
                         <small class="text-muted">Founder</small>
                         <ul class="list-unstyled mt-3 social-icon social mb-0">
-                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-facebook" title="Facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-instagram" title="Instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-twitter" title="Twitter"></i></a></li>
-                            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i class="mdi mdi-linkedin" title="Linkedin"></i></a></li>
+                           <li  class="list-inline-item"><a href="{{artiste.faceboock}}"  class="rounded"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li class="list-inline-item"><a href="{{artiste.instagram}}" class="rounded"><i class="fa-brands fa-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="{{artiste.snap}}" class="rounded"><i class="fa-brands fa-twitter" title="Twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="{{artiste.youtube}}" class="rounded"><i class="fa-brands fa-linkedin" title="Linkedin"></i></a></li>
                         </ul><!--end icon-->
                     </div>
                 </div>
             </div><!--end col-->
-            
-            <div class="col-lg-3 col-md-3  mt-4 pt-2">
+            {% endfor %}
+            {# <div class="col-lg-3 col-md-3  mt-4 pt-2">
                 <div class="team text-center rounded p-3 py-4">
                     <img src="https://bootdey.com/img/Content/avatar/avatar8.png" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
                     <div class="content mt-3">
@@ -72,9 +81,9 @@
                         </ul><!--end icon-->
                     </div>
                 </div>
-            </div><!--end col-->
+            </div><!--end col--> #}
             
-            <div class="col-lg-3 col-md-3  mt-4 pt-2">
+            {# <div class="col-lg-3 col-md-3  mt-4 pt-2">
                 <div class="team text-center rounded p-3 py-4">
                     <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
                     <div class="content mt-3">
@@ -88,9 +97,9 @@
                         </ul><!--end icon-->
                     </div>
                 </div>
-            </div><!--end col-->
+            </div><!--end col--> #}
             
-            <div class="col-lg-3 col-md-3  mt-4 pt-2">
+            {# <div class="col-lg-3 col-md-3  mt-4 pt-2">
                 <div class="team text-center rounded p-3 py-4">
                     <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
                     <div class="content mt-3">
@@ -104,7 +113,7 @@
                         </ul><!--end icon-->
                     </div>
                 </div>
-            </div><!--end col-->
+            </div><!--end col--> #}
         </div><!--end row-->
     </div>
 

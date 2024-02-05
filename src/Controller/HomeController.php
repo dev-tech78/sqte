@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/', name: 'home')]
     public function index(ActualitesRepository $repos,
      Request $request, ManagerRegistry $entityManager): Response
     {
@@ -31,9 +31,12 @@ class HomeController extends AbstractController
             $anno = $entityManager->getManager();
              $anno->persist($contact);
              $anno->flush();
-            
+             return $this->redirectToRoute('app_page');
 
        }
+
+
+
        
        
        
@@ -56,5 +59,13 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/bienvenu', name: 'app_page')]
+    public function bienvenu():Response
+    {
+        
+        return $this->render('home/bienvenu.html.twig', [
+           
+        ]);
+    }
     
 }

@@ -29,6 +29,9 @@ class Musique
     #[ORM\Column(length: 120)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(inversedBy: 'catmusique')]
+    private ?CategorieMusique $categorieMusique = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Musique
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCategorieMusique(): ?CategorieMusique
+    {
+        return $this->categorieMusique;
+    }
+
+    public function setCategorieMusique(?CategorieMusique $categorieMusique): static
+    {
+        $this->categorieMusique = $categorieMusique;
 
         return $this;
     }

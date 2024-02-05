@@ -18,8 +18,14 @@
 					<div class="container">
 						<br><div class="mb-3">
 							{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-							{{ form_row(form.titel, {'attr': {'placeholder': "Titre de l'article"}}) }}
-							{{ form_row(form.authore, {'attr': {'placeholder': "Titre de l'article"}}) }}
+							<div class="row">
+								<div class="col">{{ form_row(form.titel, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+								<div class="col">{{ form_row(form.authore, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+							</div>
+							<div class="row">
+							<div class="col-4"><p><a href="{{path('festival_image.add')}}">Ajouter les photos de festival</a></p></div>
+							</div>
+							
 							
 						</div>
 					
@@ -41,7 +47,7 @@
 							</button>
 						</div>
 
-
+						
 						{{ form_end(form) }}
 
 

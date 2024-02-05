@@ -33,13 +33,13 @@ class ActualitesController  extends AbstractController
     ): Response
     {
        
-       $new = false;
+       //$new = false;
        
         if(!$act){
         $act = new Actualites();
-
-        $new = true;
+       
        }
+       $new = true;
       
        $form = $this->createForm(ActualitesType::class, $act);
        $form->handleRequest($request);
@@ -66,9 +66,9 @@ class ActualitesController  extends AbstractController
            // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
         }
         $this->addFlash(type: 'success', message: $act->getTitle().  $message);
-        $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
-        $mailer->sendEmail(content: $mailMessage);
-        return $this->redirectToRoute('app_actualites');
+       // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+        //$mailer->sendEmail(content: $mailMessage);
+        return $this->redirectToRoute('admin_actu');
         // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
        }
        
@@ -89,7 +89,8 @@ class ActualitesController  extends AbstractController
         $pdfService->showPdf($html);
     }
 
-    #[Route('/delteactue/{id}/delet', name: 'app_deletarticle')]
+
+#[Route('/delteactue/{id}/delet', name: 'app_deletarticle')]
     public function UpdatActu(Actualites $act = null, 
     ManagerRegistry $entityManager,
   ): Response
@@ -103,7 +104,7 @@ class ActualitesController  extends AbstractController
             return $this->redirectToRoute('admin_actu'); 
 
         }else{
-            $this->addFlash(type: 'error',message:" 'Personne inenexistante ");
+            $this->addFlash(type: 'error',message:" 'Personne inexistante ");
         }
        
           

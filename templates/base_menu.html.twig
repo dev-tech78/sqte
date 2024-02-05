@@ -59,7 +59,18 @@ de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses enviro
        <!--!-->
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+      
     <link rel="stylesheet" href="{{ asset('assets/css/main.css')}}">
+
+      <link  rel="stylesheet" href="{{ asset('assets/lib/owlcarousel/assets/owl.carousel.min.css')}}" >
+    <link rel="stylesheet" href="{{ asset('assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css')}}"  />
+    <link rel="stylesheet" href="{{ asset('assets/lib/lightbox/css/lightbox.min.css')}}" > 
+     <link rel="stylesheet" href="{{ asset('assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css')}}" >
+       <link rel="stylesheet" href="{{ asset('assets/lib/owlcarousel/assets/owl.theme.default.min.css')}}" >
+     <link rel="stylesheet" href="{{ asset('assets/lib/lightbox/css/lightbox.min.css')}}" >
+     <link rel="stylesheet" href="{{ asset('assets/sass/style.css')}}" >
+     <link rel="stylesheet" href="{{ asset('assets/css_footer/style.css')}}" >
    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     
  
@@ -94,6 +105,77 @@ de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses enviro
 						font-size: 3.5rem;
 					}
 				}
+        #menu-demo2, #menu-demo2 ul{
+padding:0;
+margin:0;
+list-style:none;
+/*text-align:center;*/
+}
+#menu-demo2 li{
+display:inline-block;
+position:relative;
+border-radius:8px 8px 0 0;
+}
+#menu-demo2 ul li{
+display:inherit;
+border-radius:0;
+}
+#menu-demo2 ul li:hover{
+border-radius:0;
+}
+#menu-demo2 ul li:last-child{
+border-radius:0 0 8px 8px;
+}
+#menu-demo2 ul{
+position:absolute;
+z-index: 1000;
+max-height:0;
+left: 0;
+right: 0;
+overflow:hidden;
+-moz-transition: .8s all .3s;
+-webkit-transition: .8s all .3s;
+transition: .8s all .3s;
+}
+#menu-demo2 li:hover ul{
+max-height:15em;
+}
+/* background des liens menus */
+
+
+
+/* background des liens sous menus */
+
+#menu-demo2 li:nth-child(3) li{
+background:#9F391A;
+}
+#menu-demo2 li:last-child li{
+background:#677F35;
+}
+/* background des liens menus et sous menus au survol */
+
+#menu-demo2 li:nth-child(3):hover, #menu-demo2 li:nth-child(2) li:hover{
+background:#729EBF;
+}
+
+/* les a href */
+#menu-demo2 a{
+text-decoration:none;
+display:block;
+padding:8px 32px;
+color:#fff;
+font-family:arial;
+}
+#menu-demo2 ul a{
+padding:8px 0;
+}
+#menu-demo2 li:hover li a{
+color:#fff;
+text-transform:inherit;
+}
+#menu-demo2 li:hover a, #menu-demo2 li li:hover a{
+color:#000;
+}
 			</style>
             
 		 	{% block stylesheets %}{% endblock %}
@@ -107,45 +189,59 @@ de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses enviro
         
 				<nav>
         
-					<ul>
-          <li><a href=""></a> <audio controls>
+					<ul id="menu-demo2">
+          {# <li><a href=""></a> <audio controls>
 						
                             <source src="https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3"  type="audio/mp3">
-                            </audio></li>
-						<li><a href="/">Home</a></li>
-						<li><a href="about" class="active">somme-nous</a></li>
-						<li><a href="boutique">boutique</a></li>
+                            </audio></li> #}
+						<li><a href="/">Accueil</a></li>
+						<li><a href="/soutien/categorie/cotise" class="active">Je soutien</a></li>
+						{# <li><a href="boutique">Boutique</a></li> #}
+             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+           <li><a href="#">{{app.user.profil.name}}</a>
+              <ul>
+                <li><a href="{{ path('app_profil',{'id': app.user.id, 'slug': app.user.profil.slug})}}">Paramètre</a></li>
+                <li><a href="{{ path('modif_profilCompte',{'id': app.user.id, 'slug': app.user.profil.slug})}}">Journal d'activité</a></li>
+                <li><a href="#">lien sous menu 1</a></li>
+                <li><a href="{{ path('app_logout')}}">Déconnexion</a></li>
+              </ul>
+              
+            </li>
+            
 					</ul>
+           {% else %}
+              <li><a class="drowpdown-item" href="{{ path('app_login')}}">Connexion</a></li>
+            {% endif %}
 				</nav>
 
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <li><a class="drowpdown-item" href="{{ path('app_logout')}}">Logout</a></li>
-        {% else %}
-          <li><a class="drowpdown-item" href="{{ path('app_login')}}">Connexion</a></li>
-          <li><a class="drowpdown-item" href="{{ path('app_register')}}">Enregistrer</a></li>
-          {% endif %}
+        
 			</header>
     
         {% block body %} {% endblock %}
-          {#% include "footer.html.twig" %#}
-        <script src="https://code.jquery.com/jquery-3.6.4.js"  crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+        {% include "footer.html.twig" %} 
 
 
-      
+       {#% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <li><a class="drowpdown-item" href="{#{ path('app_logout')}}">Déconnexion</a></li>
+        {#% else %}
+          <li><a class="drowpdown-item" href="{#{ path('app_login')}}">Connexion</a></li>
+          {# <li><a class="drowpdown-item" href="{#{ path('app_register')}}">Enregistrer</a></li> #}
+          {#% endif %#}
         
          <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
        
 
 
-        {% block javascripts %} {% endblock %}
+       
         <script src="{#{ asset('assets/jquery/jQuery.js')}#}"></script>
        
-
+  <script src="{{  asset('node_modules/@fortawesome/fontawesome-free/js/all.js')}}"  /></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.js"  crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
 
@@ -156,8 +252,8 @@ de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses enviro
         <script src="{{ asset('assets/js/breakpoints.min.js')}}"></script>
         <script src="{{ asset('assets/js/util.js')}}"></script>
         <script src="{{ asset('assets/js/main.js')}}"></script>
-       
-        
+        <script src="{{ asset('assets/lib/lightbox/js/lightbox.min.js')}}"></script>
+          {% block javascripts %} {% endblock %}
     </body>
 </html>
 

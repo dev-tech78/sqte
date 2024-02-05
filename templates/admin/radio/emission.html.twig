@@ -6,29 +6,21 @@
 {% block body %}
 
 
-	
-		<div id="layoutSidenav_content">
 			<main>
 				<div class="container">
-  {#% for message in app.flashes('message') %#}
-          <div class="col-6 text-center flash">
 
-                  <div class="alert alert-primary" role="alert">
-                  <h3></h3>
-                  </div>
-          </div>
-   {#% endfor %#}
-      <h1 class="text-center">Coucou: </h1>
-        <h3 class="text-center">La Liste des émissions</h3>
-        <a href="{{ path('app_addradio') }}" class="btn btn-primary">Ajouter un article</a><br>
+      <h1 class="text-center">La Liste des émissions: </h1>
+       
+        <a href="{{ path('app_addradio') }}" class="btn btn-primary">Ajouter une emission</a><br>
      <br><br>
    <table class="table table-bordered border-primary">
-  <caption>Vos annonces</caption>
+ 
   <thead>
     <tr>
      <th scope="col">Titre</th>
     <th scope="col">Date </th>
     <th scope="col">Contenu</th>
+       <th scope="col">image</th>
     <th scope="col">Action</th>
     </tr>
   </thead>
@@ -36,9 +28,10 @@
    {#% for anonnces in app.user.adverTs %#}
    {%  for emissions in emission %}
     <tr>
-      <td data-label="Titre">{#{articles.title }#}</td>
-      <td data-label="Date">{#{articles.createdAt | date('d/m/y')}} à: {{ articles.createdAt | date('H:i') }#} </td>
-      <td data-label="Contenu">{#{articles.content|u.truncate(25, '...')|raw }#}<br></td>
+      <td data-label="Titre">{{emissions.title }}</td>
+      <td data-label="Date">{{emissions.createdAt | date('d/m/y')}} à: {{ emissions.createdAt | date('H:i') }} </td>
+      <td data-label="Contenu">{{emissions.discription|u.truncate(30, '...')|raw }}<br></td>
+      <td data-label="image"> <img src="{{ asset('/upload/galerie/' ~ emissions.image )}}"style="height: 150px; width: 130px;"  alt="Contemporary Dance"></td>
       <td data-label="Action">
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -47,13 +40,13 @@
 <div class="btn-group" role="group">
 <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle"  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                   <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
-                    <a class="dropdown-item" href="{#{ path('app_edit',{'id': articles.id}) }#}">Modifier</a>
-                    <a class="dropdown-item"   href="{#{path('app_deletarticle',{'id': articles.id})}#}" data-bs-toggle="modal" data-bs-target="#exampleModal2{#{ateliers.id}}" >Suprrimer</a>
+                    <a class="dropdown-item" href="{{ path('app_detail.radio',{'id': emissions.id}) }}">Modifier</a>
+                    <a class="dropdown-item"   href="{{path('app_emissionradio',{'id': emissions.id})}}" data-bs-toggle="modal" data-bs-target="#exampleModal2{{emissions.id}}" >Suprrimer</a>
                     
                   </div>
                 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal2{#{articles.id}#}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal2{{emissions.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" id="useraction">
       <div class="modal-header">
@@ -61,11 +54,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       Vous étre sur le point de supprimer l'anonnce : {#{articles.id}} titre,{{articles.title}#} ?
+       Vous étre sur le point de supprimer l'anonnce : {{emissions.id}} titre,{{emissions.title}} ?
+       <br><img src="{{ asset('/upload/galerie/' ~ emissions.image )}}" 
+                            class="img-fluid" alt="..." style="height: 450px; width: 330px;">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-        	<a type="button" href="{#{path('app_deletarticle',{'id': articles.id})}#}" class="btn btn-primary">Suprrimer</a>
+        	<a type="button" href="{{path('app_emissionradio',{'id': emissions.id})}}" class="btn btn-primary">Suprrimer</a>
       </div>
     </div>
   </div>

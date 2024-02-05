@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FestivalRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,6 +30,18 @@ class Festival
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $authore = null;
+
+    #[ORM\OneToMany(mappedBy: 'festival', targetEntity: ImageFestival::class, cascade:['persist'])]
+    private Collection $image; 
+
+    public function __construct()
+    {
+        $this->image = new ArrayCollection();
+    }
+
+  
+
+   
 
     public function getId(): ?int
     {
@@ -90,6 +104,36 @@ class Festival
     public function setAuthore(?string $authore): static
     {
         $this->authore = $authore;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ImageFestival>
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(ImageFestival $image): static
+    {
+        if (!$this->image->contains($image)) {
+            $this->image->add($image);
+            $image->setFestival($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(ImageFestival $image): static
+    {
+        if ($this->image->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getFestival() === $this) {
+                $image->setFestival(null);
+            }
+        }
 
         return $this;
     }

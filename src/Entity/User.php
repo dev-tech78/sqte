@@ -34,13 +34,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
-    private ?Profil $profil = null;
+   
 
   
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\OneToOne(mappedBy: 'person', cascade: ['persist', 'remove'])]
+    private ?Profil $profil = null;
 
  
    
@@ -115,17 +117,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getProfil(): ?Profil
-    {
-        return $this->profil;
-    }
-
-    public function setProfil(?Profil $profil): static
-    {
-        $this->profil = $profil;
-
-        return $this;
-    }
+   
 
     public function isVerified(): bool
     {
@@ -135,6 +127,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getProfil(): ?Profil
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(?Profil $profil): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($profil === null && $this->profil !== null) {
+            $this->profil->setPerson(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($profil !== null && $profil->getPerson() !== $this) {
+            $profil->setPerson($this);
+        }
+
+        $this->profil = $profil;
 
         return $this;
     }

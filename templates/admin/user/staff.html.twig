@@ -1,0 +1,127 @@
+{% extends 'baseback.html .twig' %}
+
+
+{% block body %}
+ 
+
+ 
+ <div class="container">
+  {% for message in app.flashes('message') %}
+          <div class="col-6 text-center flash">
+
+                  <div class="alert alert-primary" role="alert">
+                  <h3>{{message}}</h3>
+                  </div>
+          </div>
+   {% endfor %}
+          <h1 class="text-center">Bonjour:{#{app.user.profil.username}#} </h1>
+        <a href="{{ path('admin_userCompte') }}" class="btn btn-primary">Ajouter un profil</a><br>
+     <br><br>
+   <table class="table table-bordered border-primary">
+  <caption>Vos annonces</caption>
+  <thead>
+    <tr>
+     <th scope="col">Email</th>
+      <th scope="col">Roles</th>
+     <th scope="col">Date de Creation</th>
+    
+    <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for users in user %}
+    <tr>
+      <td data-label="Account">{{users.email  }}</td>
+        <td data-label="Account">
+        {%for role in users.roles %}
+        {% if role == "ROLE_ADMIN" %}
+        {% set name = "Administrateur" %}
+        {% set color = "danger" %}
+        {% elseif role == "ROLE_REDACTEUR" %}
+        {% set name = "Redacteur" %}
+         {% set color = "info" %}
+
+        {% elseif role == "ROLE_MEDIA" %}
+        {% set name = "Pôle_média" %}
+         {% set color = "info" %}
+
+         {% elseif role == "ROLE_MUSIQUE" %}
+        {% set name = "Pôle_musique" %}
+         {% set color = "info" %}
+
+        {% elseif role == "ROLE_CINEMA" %}
+        {% set name = "Pôle_cinéma" %}
+        {% set color = "info" %}
+
+        {% elseif role == "ROLE_STAGIAIRE" %}
+        {% set name = "Pôle_satagiaire" %}
+        {% set color = "warning" %}
+
+        {% elseif role == "ROLE_SECRETAIRE" %}
+        {% set name = "Pôle_Secretaire" %}
+        {% set color = "warning" %}
+
+        {% elseif role == "ROLE_COMMERCIAL" %}
+        {% set name = "Pôle_Commercial" %}
+        {% set color = "warning" %}
+
+         {% elseif role == "ROLE_SUPER_ADMIN" %}
+        {% set name = "Pésident" %}
+         {% set color = "danger" %}
+        {% else %}
+        {% set name = "Membre" %}
+        {% set color = "success" %}
+        {% endif %}
+        <span class="badge bg-{{ color }}">{{ name }}</span>
+        {% endfor %}
+
+       </td>    
+            
+            
+       <td data-label="Account">{{users.createdAt | date('d/m/y')}} à: {{ users.createdAt | date('H:i') }}</td>
+      <td data-label="Period">
+      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Action
+</button>
+<div class="btn-group" role="group">
+<button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle"  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                    <a class="dropdown-item" href="{{ path('modif_userCompte',{'id': users.id}) }}">Modifier</a>
+                     <a class="dropdown-item" href="{{ path('profil_membre',{'slug': users.profil.slug|default('undefined')}) }}">profil</a>
+                    <a class="dropdown-item"   href="{#{path('app_delet',{'id': profils.id})}#}" data-bs-toggle="modal" data-bs-target="#exampleModal2{{users.id}}" >Suprrimer</a>
+                    
+                  </div>
+                </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2{{users.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="useraction">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       Vous étre sur le point de supprimer l'utilisateur : {{users.id}} titre,{{users.email}} ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        	<a type="button" href="{#{path('app_delet',{'id': users.id})}#}" class="btn btn-primary">Suprrimer</a>
+      </div>
+    </div>
+  </div>
+</div>
+      </td>
+    </tr>
+    
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+     </div>
+
+     <br><br> <br><br> 
+
+
+{% endblock %}

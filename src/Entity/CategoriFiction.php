@@ -21,6 +21,9 @@ class CategoriFiction
     #[ORM\OneToMany(mappedBy: 'categoriFiction', targetEntity: Fiction::class)]
     private Collection $catfictions;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->catfictions = new ArrayCollection();
@@ -69,6 +72,18 @@ class CategoriFiction
                 $catfiction->setCategoriFiction(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

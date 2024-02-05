@@ -29,6 +29,7 @@
      <th scope="col">Titre</th>
     <th scope="col">Date </th>
     <th scope="col">Contenu</th>
+     <th scope="col">image</th>
     <th scope="col">Action</th>
     </tr>
   </thead>
@@ -38,7 +39,9 @@
     <tr>
       <td data-label="Titre">{{fictions.title }}</td>
       <td data-label="Date">{{fictions.createdAt | date('d/m/y')}} à: {{ fictions.createdAt | date('H:i') }} </td>
-      <td data-label="Contenu">{{fictions.content|u.truncate(25, '...')|raw }}<br></td>
+      <td data-label="Contenu">{{fictions.content|u.truncate(185, '...')|raw }}<br></td>
+      <td data-label="image"><div class="col"><img src="{{ asset('/upload/galerie/' ~ fictions.image )}}" 
+                            class="img-fluid" alt="..." style="height: 150px; width: 130px;"></div><br></td>
     
    
       <td data-label="Action">
@@ -64,7 +67,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       Vous étre sur le point de supprimer l'anonnce : {{fictions.id}} titre,{{fictions.title}} ?
+       Vous étre sur le point de supprimer la fiction : {{fictions.id}} titre,{{fictions.title}} ? <br>
+      <br> <div class="col"><img src="{{ asset('/upload/galerie/' ~ fictions.image )}}" 
+                            class="img-fluid" alt="..." style="height: 450px; width: 330px;"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

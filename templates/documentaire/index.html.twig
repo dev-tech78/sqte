@@ -4,7 +4,7 @@
      {% for docs in doc %}
             <div class="col-sm-6 col-lg-4 mb-1-9">
                 <div class="card-wrapper">
-                    <div class="card-img"><img src="https://www.bootdey.com/image/400x400/6495ED/000000" alt="..."></div>
+                    <div class="card-img"><img src="{{ asset('upload/galerie/' ~ docs.image)}}" alt="..."></div>
                     <div class="card-body">
                         <div>
                             <h3 class="h5">{{docs.title}}</h3>

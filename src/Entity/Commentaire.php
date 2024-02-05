@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\CommentaireRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
 class Commentaire
 {
@@ -21,10 +21,18 @@ class Commentaire
     private ?string $content = null;
 
     #[ORM\Column(length: 200)]
+    #[Assert\Length(
+        min: 2,
+        max: 250, 
+        minMessage: 'Le titre doit comporter au moins {{ limit }} caractères',
+        maxMessage: 'Le titre  ne peut pas être plus long que {{ limit }} caractères',
+    )]
     private ?string $nom = null;
 
-    #[ORM\ManyToOne(inversedBy: 'commentaire')]
+    #[ORM\ManyToOne(inversedBy: 'comment')]
     private ?Actualites $actualites = null;
+
+ 
 
     public function getId(): ?int
     {
@@ -72,10 +80,12 @@ class Commentaire
         return $this->actualites;
     }
 
-    public function setActualites(?Actualites $actualites): self
+    public function setActualites(?Actualites $actualites): static
     {
         $this->actualites = $actualites;
 
         return $this;
     }
+
+    
 }

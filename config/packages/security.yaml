@@ -14,6 +14,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            switch_user: true
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\UserAuthenticator
@@ -34,17 +35,26 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
     role_hierarchy:  
-        ROLE_SUPER_ADMIN: ROLE_ADMIN          
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_CINEMA, ROLE_MUSIQUE, ROLE_MEDIA]
+        ROLE_ADMIN: [ROLE_USER, ROLE_REDACTEUR, ROLE_STAGIAIRE]  
+        ROLE_CINEMA: [ROLE_CINEMA] 
+        ROLE_MUSIQUE: [ROLE_MUSIQUE] 
+        ROLE_MEDIA: [ROLE_MEDIA] 
+        ROLE_SECRETAIRE: [ROLE_SECRETAIRE, ROLE_REDACTEUR, ROLE_STAGIAIRE]
+        ROLE_COMMERCIAL: [ROLE_COMMERCIAL] 
+
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        #  - { path: ^/admin, roles: ROLE_ADMIN }
-        #  - { path: ^/profile, roles: ROLE_USER }
-        #  - { path: ^/profile, roles: ROLE_MEDIA }
-        #  - { path: ^/profile, roles: ROLE_CINEMA }
-        #  - { path: ^/profile, roles: ROLE_MUSIQUE }
-        #  - { path: ^/profile, roles: ROLE_REDACTEUR }
-        #  - { path: ^/profile, roles: ROLE_STAGIAIRE }
+           - { path: ^/admin, roles: ROLE_ADMIN }
+           - { path: ^/profile, roles: ROLE_USER }
+           - { path: ^/profile, roles: ROLE_MEDIA }
+           - { path: ^/profile, roles: ROLE_CINEMA }
+           - { path: ^/profile, roles: ROLE_MUSIQUE }
+           - { path: ^/profile, roles: ROLE_REDACTEUR }
+           - { path: ^/profile, roles: ROLE_STAGIAIRE }
+           - { path: ^/profile, roles: ROLE_SECRETAIRE }
+           - { path: ^/profile, roles: ROLE_COMMERCIAL }
 
 when@test:
     security:

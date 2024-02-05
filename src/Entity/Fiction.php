@@ -43,12 +43,21 @@ class Fiction
     #[ORM\OneToMany(mappedBy: 'fiction', targetEntity: Image::class)]
     private Collection $imageline;
 
+    #[ORM\Column(length: 255)]
+    private ?string $realisateur = null;
+
     public function __construct()
     {
         $this->relatfiction = new ArrayCollection();
         $this->imageline = new ArrayCollection();
     }
 
+
+    public function __toString()
+    {
+         return $this->title;
+
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -194,6 +203,18 @@ class Fiction
                 $imageline->setFiction(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRealisateur(): ?string
+    {
+        return $this->realisateur;
+    }
+
+    public function setRealisateur(string $realisateur): static
+    {
+        $this->realisateur = $realisateur;
 
         return $this;
     }

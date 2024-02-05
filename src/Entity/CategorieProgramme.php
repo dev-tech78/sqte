@@ -21,9 +21,16 @@ class CategorieProgramme
     #[ORM\OneToMany(mappedBy: 'categorieProgramme', targetEntity: EmissionRadio::class)]
     private Collection $EmissionRadio;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
+    #[ORM\OneToMany(mappedBy: 'categorieProgramme', targetEntity: Programme::class)]
+    private Collection $personaliser;
+
     public function __construct()
     {
         $this->EmissionRadio = new ArrayCollection();
+        $this->personaliser = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +74,48 @@ class CategorieProgramme
             // set the owning side to null (unless already changed)
             if ($emissionRadio->getCategorieProgramme() === $this) {
                 $emissionRadio->setCategorieProgramme(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Programme>
+     */
+    public function getPersonaliser(): Collection
+    {
+        return $this->personaliser;
+    }
+
+    public function addPersonaliser(Programme $personaliser): static
+    {
+        if (!$this->personaliser->contains($personaliser)) {
+            $this->personaliser->add($personaliser);
+            $personaliser->setCategorieProgramme($this);
+        }
+
+        return $this;
+    }
+
+    public function removePersonaliser(Programme $personaliser): static
+    {
+        if ($this->personaliser->removeElement($personaliser)) {
+            // set the owning side to null (unless already changed)
+            if ($personaliser->getCategorieProgramme() === $this) {
+                $personaliser->setCategorieProgramme(null);
             }
         }
 

@@ -5,9 +5,9 @@ namespace  App\Controller\Admin;
 
 use App\Entity\Festival;
 use App\Form\FestivalType;
-use Doctrine\Persistence\ManagerRegistry;
-use App\Repository\DocumentaireRepository;
 use App\Repository\FestivalRepository;
+
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +19,15 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class BackFestiController  extends AbstractController
 {
 
-
+    #[Route('/', name: 'app_festival.affiche')]
+    public function index(FestivalRepository $repository): Response
+    {
+        
+        $fest = $repository->findAll();
+        return $this->render('admin/festival/index.html.twig', [
+            'festival' => $fest
+        ]);
+    }
 
 
     #[Route('/addfestival', name: 'festival_add')]
@@ -31,7 +39,7 @@ class BackFestiController  extends AbstractController
        if(!$fest){
         $fest = new Festival();
        }
-      
+       $new = true;
        $form = $this->createForm(FestivalType::class, $fest);
        $form->handleRequest($request);
        if($form->isSubmitted()&& $form->isValid()){
@@ -46,7 +54,20 @@ class BackFestiController  extends AbstractController
         $this->addFlash('message', 'Article ajouté avec succès');
         return $this->redirectToRoute('app_actualites');
        // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
-       }
+       if($new) {
+        $message = "a été ajouté avec succès";
+        // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+        }else{
+            $message = "a été mis à jour avec succès";
+        // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+        }
+        $this->addFlash(type: 'success', message:  $fest->getTitel().  $message);
+    // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+        //$mailer->sendEmail(content: $mailMessage);
+        return $this->redirectToRoute('admin_actu');
+        // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
+   }
+       
        
        
         return $this->render('admin/festival/ajouterfest.html.twig', [
@@ -57,7 +78,7 @@ class BackFestiController  extends AbstractController
     }
 
 
-    #[Route('/supprimerdocumentaire/{id?0}/delet', name: 'app_docdelete')]
+    #[Route('/supprimerfest/{id?0}/delet', name: 'app_docdelete')]
     public function DeletFesival(Festival  $fest, 
     ManagerRegistry $entityManager,
   )
@@ -70,18 +91,7 @@ class BackFestiController  extends AbstractController
     }
 
 
-    #[Route('/', name: 'app_festival.affiche')]
-    public function index(FestivalRepository $repository): Response
-    {
-        
-      
-      
-        $fest = $repository->findAll();
-        
-        return $this->render('admin/festival/index.html.twig', [
-            'festival' => $fest
-        ]);
-    }
+   
 
 
 }

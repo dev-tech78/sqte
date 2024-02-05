@@ -1,0 +1,77 @@
+ 
+{% extends 'baseback.html .twig' %}
+
+{% block title %}Radio!
+{% endblock %}
+
+{% block body %}
+
+
+	<div id="layoutSidenav_content">
+		<main>
+			<div class="container-fluid px-4">
+
+				<br><br>
+				<h1 class="mt-4  text-center">
+					La fiche de l'artiste !
+				</h1>
+				<div class="container">
+					<br><div class="mb-3">
+                     	{% if form is defined %}
+						{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+						<div class="row">
+							<div class="col">{{ form_row(form.nom, {'attr': {'placeholder': "Le nom de l'article"}}) }}</div>
+							<div class="col">{{ form_row(form.fiction, {'attr': {'placeholder': "La photo l'artiste"}}) }}</div>
+						</div>
+                        <div class="row">
+                            <div class="col">{{ form_row(form.faceboock , {'attr': {'placeholder': "faceboock ou autre"}}) }}</div>
+                            <div class="col"> {{ form_row(form.instagram , {'attr': {'placeholder': "instagram ou autre"}}) }}</div>
+                        </div>
+                        </div>
+                            <div class="row">
+                             <div class="col">{{ form_row(form.snap , {'attr': {'placeholder': "snap ou autre"}}) }}</div>
+                             <div class="col">{{ form_row(form.youtube , {'attr': {'placeholder': "youtube ou autre"}}) }}</div>
+                        </div>
+						{{ form_rest(form) }} 
+					{# </div>
+					 <div class="form-group">
+						{{ form_row(form.categorieAtelier , {'attr': {'placeholder': "Titre de l'article"}}) }}
+
+					</div> 
+					 <div class="form-group">
+
+						{{ form_row(form.discription , {'attr': {'placeholder': "le contenu de l'article"}}) }}
+					</div>
+
+					<div class="form-group">
+						{{ form_row(form.image , {'attr': {'placeholder': "Image de l'article"}}) }}
+					</div>  #}
+					<div class="mb-3">
+						<button type="submit" class="btn btn-success">
+							{% if editMode %}
+								Enregistrer
+							{% else %}
+								Ajouter l'article
+
+							{% endif %}
+
+						</button>
+					</div>
+
+
+					{{ form_end(form) }}
+{% endif %}
+
+				</div>
+			</main>
+
+
+		 {% endblock %} 
+{% block javascripts   %}
+
+		 <script> 
+			$(document).ready(function() {
+				$('.select2').select2();
+			});
+			</script>
+{% endblock %}

@@ -5,6 +5,7 @@ namespace  App\Controller\Admin;
 
 use App\Entity\Fiction;
 use App\Form\FictionType;
+use App\Service\UploaderService;
 use App\Repository\FictionRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,12 +35,14 @@ class BackcineController extends AbstractController
     #[Route('/updatecinema/{id}/edit', name: 'edit.cinema')]
     public function form(Fiction $fiction  = null, 
      Request $request, ManagerRegistry $entityManager,
-     SluggerInterface $slugger ): Response
+     SluggerInterface $slugger,
+     UploaderService $uploaderService ): Response
     {
        if(!$fiction){
         $fiction = new Fiction();
+        
        }
-      
+       $new = true;
        $form = $this->createForm(FictionType::class, $fiction);
        $form->handleRequest($request);
        if($form->isSubmitted()&& $form->isValid()){
@@ -51,26 +54,26 @@ class BackcineController extends AbstractController
 
         $imageFile =  $form->get('image')->getData();
         if ($imageFile) {
-            $imageoriginalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $imagFilename = $slugger->slug($imageoriginalFilename);
-            $newFilename = $imagFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
-            try {
-                $imageFile->move(
-                    $this->getParameter('galerie_directory'),
-                    $newFilename
-                );
-            } catch (FileException $e) {
-            } $fiction->setImage($newFilename);
+            $derectory =  $this->getParameter('galerie_directory');    
+            $fiction->setImage($uploaderService->UploaderFile($imageFile, $derectory));
         }
-
-        
-
         $acte = $entityManager->getManager();
         $acte->persist($fiction);
         $acte->flush();
         $this->addFlash('message', 'Article ajouté avec succès');
-        return $this->redirectToRoute('app_actualites');
-       // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
+        if($new) {
+            $message = "a été ajouté avec succès";
+           // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+        }else{
+            $message = "a été mis à jour avec succès";
+           // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+        }
+        $this->addFlash(type: 'success', message:  $fiction->getTitle().  $message);
+       // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+        //$mailer->sendEmail(content: $mailMessage);
+        return $this->redirectToRoute('app_affichecine');
+        // return $this->redirectToRoute('app_actualites', ['slug' => $act->getSlug()]);
+       
        }
        
        
@@ -87,11 +90,23 @@ class BackcineController extends AbstractController
     ManagerRegistry $entityManager,
   )
     {
+        $new = true;
         $em = $entityManager->getManager();
             $em->remove($fiction);
             $em->flush();
-            $this->addFlash('message', 'Article supprimer avec succès');
-            return $this->redirectToRoute('app_addactue'); 
+          
+            $this->addFlash('message', 'Article ajouté avec succès');
+            if($new) {
+                $message = "a été ajouté avec succès";
+               // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+            }else{
+                $message = "a été mis à jour avec succès";
+               // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+            }
+            $this->addFlash(type: 'success', message:  $fiction->getTitle().  $message);
+           // $mailMessage = $act->getTitle() . '' .$act->getImage(). '' .$message;
+            //$mailer->sendEmail(content: $mailMessage);
+            return $this->redirectToRoute('app_affichecine');
        
         
     }

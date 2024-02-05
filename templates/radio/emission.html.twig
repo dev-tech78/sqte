@@ -11,7 +11,7 @@
                     <div class="idance">
     <div class="schedule content-block">
         <div class="container">
-           <br> <h2 data-aos="zoom-in-up" class="aos-init aos-animate">Schedule</h2>
+           <br> <h2 data-aos="zoom-in-up" class="aos-init aos-animate">Podcast</h2>
         
             <div class="timetable">
         
@@ -35,10 +35,10 @@
                     <div class="col-md-6">
                       <div class="timetable-item">
                         <div class="timetable-item-img">
-                          <img src="https://www.bootdey.com/image/100x80/FFB6C1/000000" alt="Contemporary Dance">
+                          <img src="{{ asset('/upload/galerie/' ~ emissions.image )}}" alt="Contemporary Dance" >
                         </div>
                         <div class="timetable-item-main">
-                          <div class="timetable-item-time">{{emissions.title}}:  le {{emissions.createdAt| date('d/m/y')}} </div>
+                          <div class="timetable-item-time">{{emissions.title}}:  {#{emissions.createdAt| date('d/m/y')}#} </div>
                         
                            <div class="timetable-item-name">{{emissions.duree}}</div>
                             <audio controls>
@@ -53,7 +53,7 @@
                         </div>
                       </div>
                     </div>
-        {% endfor %}
+                   {% endfor %}
                     <!-- Schedule Item 2 --
                     <div class="col-md-6">
                       <div class="timetable-item">
@@ -168,7 +168,7 @@
 					</section>
 
 			</div>
-
+<br><br>
 
       
 {% endblock %}

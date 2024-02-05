@@ -1,0 +1,14 @@
+<h1>{{newsletter.title}}</h1>
+
+<div>
+<p>{{newsletter.content|raw}}</p>
+</div>
+
+
+<p> Pour  vous désinscrire, Cliquez sur ce lien <a href="{{absoulute_url(path('app_unsubscribe', {id: users.id, newsletter:newsletter.id, token: users.validationToken}))}}">
+{{absoulute_url(path('app_unsubscribe', {id: users.id, newsletter:newsletter.id, token: token}))}}"</a></p>
+
+
+
+
+

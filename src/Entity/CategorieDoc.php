@@ -21,6 +21,9 @@ class CategorieDoc
     #[ORM\OneToMany(mappedBy: 'categorieDoc', targetEntity: Documentaire::class)]
     private Collection $relation;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->relation = new ArrayCollection();
@@ -69,6 +72,18 @@ class CategorieDoc
                 $relation->setCategorieDoc(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

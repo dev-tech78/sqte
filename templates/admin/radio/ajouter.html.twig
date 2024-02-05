@@ -12,33 +12,36 @@
 				<div class="container-fluid px-4">
 
                     <br><br>
-					<h1 class="mt-4">
-						Création d'un article !
+					<h1 class="mt-4 text-center">
+						Ajouter une émission !
 					</h1>
 					<div class="container">
 						<br><div class="mb-3">
 							{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-							{{ form_row(form.title, {'attr': {'placeholder': "Titre de l'article"}}) }}
-							{{ form_row(form.presentateur, {'attr': {'placeholder': "Titre de l'article"}}) }}
-							{{ form_row(form.lien, {'attr': {'placeholder': "Titre de l'article"}}) }}
-							
+							<div class="row">
+							<div class="col">{{ form_row(form.title, {'attr': {'placeholder': "Titre de l'émission"}}) }}</div>
+							<div class="col">{{ form_row(form.presentateur, {'attr': {'placeholder': "Nom du Présentateur"}}) }}<div>
+							</div>
+							</div>
+							<div class="form-group">
+							<div class="row">
+								<div class="col">{{ form_row(form.lien, {'attr': {'placeholder': "Le lien de l'émission"}}) }}</div>
+								<div class="col">{{ form_row(form.image , {'attr': {'placeholder': "Image de l'article"}}) }}</div>
+							</div>
 						</div>
-						<div class="form-group">
-							{{ form_row(form.duree , {'attr': {'placeholder': "Titre de l'article"}}) }}
-
+						
+						<div class="row">
+							<div class="col">{{ form_row(form.duree , {'attr': {'placeholder': "Durée de l'émission"}}) }}</div>
+							<div class="col">{{ form_row(form.categorieRadio , {'attr': {'placeholder': "Categorie"}}) }}</div>
 						</div>
-						<div class="form-group">
-							{{ form_row(form.categorieRadio , {'attr': {'placeholder': "Titre de l'article"}}) }}
-
 						</div>
+						
 						<div class="form-group">
 
 						{{ form_row(form.discription, {'attr': {'placeholder': "Titre de l'article"}}) }}
 						</div>
 
-						<div class="form-group">
-							{{ form_row(form.image , {'attr': {'placeholder': "Image de l'article"}}) }}
-						</div>
+						
 						<div class="mb-3">
 							<button type="submit" class="btn btn-success">
 								{% if editMode %}
@@ -60,3 +63,11 @@
 
 
 			{% endblock %}
+			{% block javascripts   %}
+
+		 <script> 
+			$(document).ready(function() {
+				$('.select2').select2();
+			});
+			</script>
+{% endblock %}

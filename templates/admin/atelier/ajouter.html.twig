@@ -6,13 +6,13 @@
 {% block body %}
 
 
-	<div id="layoutSidenav_content">
+
 		<main>
 			<div class="container-fluid px-4">
 
 				<br><br>
 				<h1 class="mt-4  text-center">
-					Création d'un atelier !
+					Ajouter un atelier !
 				</h1>
 				<div class="container">
 					<br><div class="mb-3">
@@ -20,22 +20,27 @@
 						<div class="row">
 							<div class="col">{{ form_row(form.titel, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
 							<div class="col">{{ form_row(form.author, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
-						</div>
-						{# {{ form_row(form.programme, {'attr': {'placeholder': "Titre de l'article"}}) }} #}
-						{{ form_rest(form) }}
-					</div>
-					{# <div class="form-group">
-						{{ form_row(form.categorieAtelier , {'attr': {'placeholder': "Titre de l'article"}}) }}
 
-					</div> #}
-					{# <div class="form-group">
+						</div>
+
+						{# {{ form_rest(form) }} #}
+					</div>
+					<div class="form-group">
+						<div class="col-6">{{ form_row(form.programme, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+						<div class="row">
+
+							<div class="col">{{ form_row(form.categorieAtelier , {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+							<div class="col">{{ form_row(form.image , {'attr': {'placeholder': "Image de l'article"}}) }}</div>
+
+						</div>
+
+					</div>
+
+					<div class="form-group">
 
 						{{ form_row(form.discription , {'attr': {'placeholder': "le contenu de l'article"}}) }}
 					</div>
 
-					<div class="form-group">
-						{{ form_row(form.image , {'attr': {'placeholder': "Image de l'article"}}) }}
-					</div> #}
 					<div class="mb-3">
 						<button type="submit" class="btn btn-success">
 							{% if editMode %}
@@ -56,4 +61,12 @@
 			</main>
 
 
+		{% endblock %}
+		{% block javascripts   %}
+
+			<script>
+				$(document).ready(function () {
+$('.select2').select2();
+});
+			</script>
 		{% endblock %}

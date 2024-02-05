@@ -34,24 +34,24 @@ class Actualites
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'actualites', targetEntity: Commentaire::class)]
-    private Collection $commentaire;
+   
 
   
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\ManyToOne(inversedBy: 'catactu')]
-   // #[ORM\JoinColumn(nullable: false)]
-    private ?CategorieActu $categorieActu = null;
+    #[ORM\OneToMany(mappedBy: 'actualites', targetEntity: Commentaire::class)]
+    private Collection $comment;
 
-    
+    #[ORM\ManyToOne(inversedBy: 'catactu')]
+    private ?CategorieActu $categorieActu = null;
 
     public function __construct()
     {
-        $this->commentaire = new ArrayCollection();
+        $this->comment = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -106,36 +106,7 @@ class Actualites
         return $this;
     }
 
-    /**
-     * @return Collection<int, Commentaire>
-     */
-    public function getCommentaire(): Collection
-    {
-        return $this->commentaire;
-    }
-
-    public function addCommentaire(Commentaire $commentaire): self
-    {
-        if (!$this->commentaire->contains($commentaire)) {
-            $this->commentaire->add($commentaire);
-            $commentaire->setActualites($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommentaire(Commentaire $commentaire): static
-    {
-        if ($this->commentaire->removeElement($commentaire)) {
-            // set the owning side to null (unless already changed)
-            if ($commentaire->getActualites() === $this) {
-                $commentaire->setActualites(null);
-            }
-        }
-
-        return $this;
-    }
-
+ 
     
 
     public function getSlug(): ?string
@@ -146,6 +117,36 @@ class Actualites
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getComment(): Collection
+    {
+        return $this->comment;
+    }
+
+    public function addComment(Commentaire $comment): static
+    {
+        if (!$this->comment->contains($comment)) {
+            $this->comment->add($comment);
+            $comment->setActualites($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Commentaire $comment): static
+    {
+        if ($this->comment->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getActualites() === $this) {
+                $comment->setActualites(null);
+            }
+        }
 
         return $this;
     }
@@ -161,4 +162,6 @@ class Actualites
 
         return $this;
     }
+
+   
 }

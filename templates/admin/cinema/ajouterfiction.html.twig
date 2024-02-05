@@ -7,33 +7,36 @@
 
 
 	
-		<div id="layoutSidenav_content">
+	
 			<main>
-				<div class="container-fluid px-4">
+				<div class="container">
 
                     <br><br>
 					<h1 class="mt-4 text-center">
 						Création d'une fiction !
 					</h1>
 					<div class="container">
-						<br><div class="mb-3">
-							{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-							{{ form_row(form.title, {'attr': {'placeholder': "Titre de l'article"}}) }}
-							{{ form_row(form.type, {'attr': {'placeholder': "Titre de l'article"}}) }}
+					{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+						<br><div class="row">
+							<div class="col">{{ form_row(form.title, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+							<div class="col">{{ form_row(form.type, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
 						</div>
 						<div class="form-group">
-							{{ form_row(form.categoriFiction , {'attr': {'placeholder': "Titre de l'article"}}) }}
-
+						<div class="row">
+							
+							<div class="col">{{ form_row(form.realisateur , {'attr': {'placeholder': "Nom de Réalisateur"}}) }}</div>
+							<div class="col">{{ form_row(form.categoriFiction , {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+							<div class="col">{{ form_row(form.image , {'attr': {'placeholder': "Image de l'article"}}) }}</div>
+						</div>
 						</div>
 						<div class="form-group">
 
 							{{ form_row(form.content , {'attr': {'placeholder': "le contenu de l'article"}}) }}
 						</div>
 
-						<div class="form-group">
-							{{ form_row(form.image , {'attr': {'placeholder': "Image de l'article"}}) }}
-						</div>
-						<div class="mb-3">
+						
+						
+						<div class="mb-3 ">
 							<button type="submit" class="btn btn-success">
 								{% if editMode %}
 									Enregistrer
@@ -43,14 +46,29 @@
 								{% endif %}
 
 							</button>
+							
 						</div>
-
+						<div><a href="{{path('add_image')}}">Ajouter l'affiche des artistes</a></div>
+						
+                 
 
 						{{ form_end(form) }}
 
 						
 					</div>
+					
 				</main>
 
-
+					{# {{ render(controller( 'App\\Controller\\ImageController::form' )) }} #}
 			{% endblock %}
+			{% block javascripts   %}
+
+					<script> 
+						$(document).ready(function() {
+							$('.select2').select2();
+						});
+						</script>
+						
+			{% endblock %}
+
+			

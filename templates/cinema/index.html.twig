@@ -37,25 +37,41 @@
         {% for longues in longue %}
             <div class="col-sm-6 col-lg-4 mb-1-9">
                 <div class="card-wrapper">
-                    <div class="card-img"><img src="{{asset('/upload/galerie/' ~ longues.image )}}" alt="..."></div>
+                    <div class="card-img"><img src="{{asset('../images/clapper.png')}}" alt="..."></div>
                       
                     <div class="card-body">
                         <div>
-                            <h3 class="h5">{{longues.title}} </h3>
+                            <h3 class="h5">Longue-métrage </h3>
                             <p class="display-30">Tous les titres de nos long-métrages.</p>
                             <a href="{{ path('app_long')}}" class="read-more">voir plus</a>
                         </div>
                     </div>
                 </div>
             </div>
-            {% endfor %}
-             {% for courts in court %}
+            {% else %}
             <div class="col-sm-6 col-lg-4 mb-1-9">
                 <div class="card-wrapper">
                     <div class="card-img"><img src="{{asset('../images/clapper.png')}}" alt="..."></div>
+                      
                     <div class="card-body">
                         <div>
-                            <h3 class="h5">{{courts.title}}</h3>
+                            {# <h3 class="h5">Longue-métrage </h3> #}
+                            <p class="display-30">Pas de Longue-métrage pour l'instant.</p>
+                            {# <a href="{{ path('app_long')}}" class="read-more">voir plus</a> #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+             {% for courts in court %}
+            <div class="col-sm-6 col-lg-4 mb-1-9">
+                <div class="card-wrapper">
+                   {# <div class="card-img"><img src="{{asset('../images/clapper.png')}}" alt="..."></div> #}
+                    <div class="card-img"><img src="{{asset('../images/clapper.png')}}" alt="..."></div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="h5">Court-métrage</h3>
                             <p class="display-30">Gravida proin nibh vel velit auctor alique.</p>
                             <a href="{{ path('app_court')}}" class="read-more">voir plus</a>
                         </div>
@@ -66,10 +82,10 @@
                  {% for series in serie %}
             <div class="col-sm-6 col-lg-4 mb-1-9">
                 <div class="card-wrapper">
-                    <div class="card-img"><img src="https://www.bootdey.com/image/400x400/008B8B/000000" alt="..."></div>
+                    <div class="card-img"><img src="{{asset('../images/clapper.png')}}" alt="..."></div>
                     <div class="card-body">
                         <div>
-                            <h3 class="h5">{{series.title}}</h3>
+                            <h3 class="h5">Web-series</h3>
                             <p class="display-30">Nibh proin gravida vel velit auctor alique.</p>
                             <a href="{{ path('app_serie')}}" class="read-more">voir plus</a>
                         </div>

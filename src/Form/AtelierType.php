@@ -5,35 +5,43 @@ namespace App\Form;
 use App\Entity\Atelier;
 use App\Entity\CategorieAtelier;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class AtelierType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titel',TextType::class)
-            ->add('discription',TextareaType::class,[
+            ->add('titel',TextType::class,[
+                'label' => ' Titre de  l\'atelier'
+            ])
+            ->add('discription',CKEditorType::class,[
 
                 'attr' =>['placeholder' => "Contenu de l'article"]
             ])
-            ->add('author',TextType::class)
+            ->add('author',TextType::class,[
+                'label' => ' Auteur de  l\'atelier'
+            ])
             ->add('programme',TextType::class)
             //->add('createdAt')
            // ->add('slug')
             ->add('categorieAtelier', EntityType::class,[
                 'class' => CategorieAtelier::class,
-                    'choice_label' => 'nom'
+                    'choice_label' => 'nom',
+                    'attr' => [
+                        'class' => 'select2'
+                    ]
                 
             ])
             ->add('image', FileType::class, [
-                'label' => ' Télécharger votre photo',
+                'label' => ' Image d\'en-tête  ',
                 'mapped' => false,  
                 'required' => false,
                 'constraints' => [

@@ -7,17 +7,10 @@
 
 
 	
-		<div id="layoutSidenav_content">
+		
 			<main>
 				<div class="container">
-  {#% for message in app.flashes('message') %#}
-          <div class="col-6 text-center flash">
 
-                  <div class="alert alert-primary" role="alert">
-                  <h3></h3>
-                  </div>
-          </div>
-   {#% endfor %#}
       <h1 class="text-center">Coucou: </h1>
         <h3 class="text-center">La Liste des articles</h3>
         <a href="{{ path('app_doc') }}" class="btn btn-primary">Ajouter un Documentaire</a><br>
@@ -29,6 +22,7 @@
      <th scope="col">Titre</th>
     <th scope="col">Date </th>
     <th scope="col">Contenu</th>
+    <th scope="col">Image</th>
     <th scope="col">Action</th>
     </tr>
   </thead>
@@ -39,6 +33,8 @@
       <td data-label="Titre">{{documentaires.title }}</td>
       <td data-label="Date">{{documentaires.createdAt | date('d/m/y')}} à: {{ documentaires.createdAt | date('H:i') }} </td>
       <td data-label="Contenu">{{documentaires.content|u.truncate(25, '...')|raw }}<br></td>
+      <td data-label="image"> <img src="{{ asset('/upload/galerie/' ~ documentaires.image )}}" 
+                            class="img-fluid" alt="..." style="height: 150px; width: 130px;"></td>
       <td data-label="Action">
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -62,6 +58,8 @@
       </div>
       <div class="modal-body">
        Vous étre sur le point de supprimer l'anonnce : {{documentaires.id}} titre,{{documentaires.title}} ?
+        <img src="{{ asset('/upload/galerie/' ~ documentaires.image )}}" 
+                            class="img-fluid" alt="..." style="height: 450px; width: 330px;">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

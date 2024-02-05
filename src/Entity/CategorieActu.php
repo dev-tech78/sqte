@@ -48,35 +48,7 @@ class CategorieActu
         return $this;
     }
 
-    /**
-     * @return Collection<int, Actualites>
-     */
-    public function getCatactu(): Collection
-    {
-        return $this->catactu;
-    }
-
-    public function addCatactu(Actualites $catactu): self
-    {
-        if (!$this->catactu->contains($catactu)) {
-            $this->catactu->add($catactu);
-            $catactu->setCategorieActu($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCatactu(Actualites $catactu): self
-    {
-        if ($this->catactu->removeElement($catactu)) {
-            // set the owning side to null (unless already changed)
-            if ($catactu->getCategorieActu() === $this) {
-                $catactu->setCategorieActu(null);
-            }
-        }
-
-        return $this;
-    }
+    
 
    
 

@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/festival')]
 class FestivalController extends AbstractController
 {
-    #[Route('/', name: 'app_festival')]
+    #[Route('/', name: 'festival')]
     public function index(FestivalRepository $repos): Response
     {
        

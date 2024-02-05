@@ -14,7 +14,7 @@ class UploaderService
    
     // On va lui passer un objet de type UploadeFile
    //Et elle doit doit nous retourner le nom de ce file
-    public function UploaderFile( UploadedFile $fil, string $directoryFolder )  {
+    public function UploaderFile(UploadedFile  $fil, string $directoryFolder )  {
       
      
             $imageoriginalFilename = pathinfo($fil->getClientOriginalName(), PATHINFO_FILENAME);

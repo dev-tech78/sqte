@@ -22,8 +22,25 @@ class Profil
     #[ORM\Column(length: 255)]
     private ?string $poste = null;
 
-    #[ORM\OneToOne(mappedBy: 'profil', cascade: ['persist', 'remove'])]
-    private ?User $user = null;
+
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $contact = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $experience = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $formation = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\OneToOne(inversedBy: 'profil', cascade: ['persist', 'remove'])]
+    private ?User $person = null;
 
   
 
@@ -68,24 +85,76 @@ class Profil
         return $this;
     }
 
-    public function getUser(): ?User
+    
+
+    public function getContact(): ?string
     {
-        return $this->user;
+        return $this->contact;
     }
 
-    public function setUser(?User $user): static
+    public function setContact(?string $contact): static
     {
-        // unset the owning side of the relation if necessary
-        if ($user === null && $this->user !== null) {
-            $this->user->setProfil(null);
-        }
+        $this->contact = $contact;
 
-        // set the owning side of the relation if necessary
-        if ($user !== null && $user->getProfil() !== $this) {
-            $user->setProfil($this);
-        }
+        return $this;
+    }
 
-        $this->user = $user;
+    public function getExperience(): ?string
+    {
+        return $this->experience;
+    }
+
+    public function setExperience(?string $experience): static
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    public function getFormation(): ?string
+    {
+        return $this->formation;
+    }
+
+    public function setFormation(?string $formation): static
+    {
+        $this->formation = $formation;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getPerson(): ?User
+    {
+        return $this->person;
+    }
+
+    public function setPerson(?User $person): static
+    {
+        $this->person = $person;
 
         return $this;
     }

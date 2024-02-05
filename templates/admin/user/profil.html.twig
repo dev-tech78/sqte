@@ -1,0 +1,93 @@
+{% extends 'baseback.html .twig' %}
+
+{% block title %}{{ app.user.profil.name|default('undefined') }}{% endblock %}
+
+{% block body %}
+ <br><br><br>
+            
+
+
+  <br><br><br>
+            
+            
+           <div class="container" id="profil">
+              <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+                <h5 class="text-primary text-uppercase" style="letter-spacing: 5px;"></h5>
+                 {# {% for message in app.flashes('message') %}
+                        <div class="col-md-8 col-sm-12 text-center flash">
+
+                            <div class="alert alert-primary" role="alert">
+                            <h3>{{message}}</h3>
+                            </div>
+                        </div>
+                            {% endfor %} #}
+
+                 <h3 class="text-center">hello:  {{profil.name|default('undefined')}}
+                 {# {% if app.user %}
+                 {{app.user.profil.name}}
+                 {% endif %} #}
+                  </h3>
+                     <hr class="w-25 mx-auto bg-primary">
+            </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <br> <div class="card" style="width: 18rem;">
+          
+             
+                       {% if profil.avatar|default('undefined') %}
+                           <img src="{{ asset('/upload/galerie/' ~ profil.avatar|default('undefined'))}}" class="card-img-top" alt="...">
+                           {% else %} 
+                            <img src="{{ asset('../img/avatare.png')}}" class="card-img-top img-fluid" alt="..."> 
+                            {% endif %} 
+                               <h6 class="text-center"> {{ profil.name|default('undefined') }}</h6>
+                                
+                          
+                    </div>
+                        
+                </div>
+                    <div class="col-md-8 col-sm-12"><br>
+                        <div class="card">
+                            <div class="card-header">
+                              Competance
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">Fiche de membre d'association</h5>
+                              <p class="card-text">
+                                <p class="card-text">Poste chez SQTE : {{profil.poste|default('undefined') }}.</p>
+                                <p class="card-text"> Formation:  {{ profil.formation|default('undefined') }}.</p>
+                                <p class="card-text">Experience : {{ profil.experience|default('undefined') }}.</p>
+                                <p class="card-text">Contact : {{ profil.contact|default('undefined') }}.</p>
+                            </div>
+                        </div>
+                    </div>
+
+            </div><br>
+        
+              
+
+            </div class="text-center">
+            <div class="col-11 text-center">
+               <br><a href="{{path('edit.profil',{'id': profil.id|default('undefined')})}}" class="btn btn-primary">Actualiser votre profil</a><br>
+             <br><div class="alert alert-success" role="alert">
+              <h4 class="alert-heading">Supprimer votre compte</h4>
+               
+              <hr>
+              <p class="mb-0"></p>
+            </div>
+            </div>
+           
+                        </div>
+                        
+                       
+                        
+                        
+                </div>
+
+            </div>
+            
+
+           </div>
+       <br><br><br>
+
+
+{% endblock %}

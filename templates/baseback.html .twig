@@ -1,296 +1,315 @@
 <!DOCTYPE html>
-<html>
-    <head>
-       	<meta charset="utf-8">
-		<meta content="width=device-width, initial-scale=1.0" name="viewport">
-		<meta content="" name="keywords">
-		<meta content="" name="description">	
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<meta name="description" content=""/>
+		<meta name="author" content=""/>
 		<title>
-			{% block title %}Mantes_Talents!
-			{% endblock %}
+			{% block title %}{% endblock %}
 		</title>
-   
-
-<!-- Ouvrir les données du graphique -->
-   
-<meta name="description" content="Mantes-Talents, est une plateforme, ayant pour objectif 
-de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses environs,
- afin de faire émerger et cultiver le potentiel de tous ! ..." />
-<!-- Google Authorship and Publisher Markup -->
-<link rel="author" href="https://plus.google.com/[Google+_Profile]/posts"/>
-<link rel="publisher" href="https://plus.google.com/[Google+_Page_Profile]"/>
-
-<!-- Schema.org markup for Google+ -->
-<meta itemprop="name" content="The Name or Title Here">
-<meta itemprop="description" content="This is the page description">
-<meta itemprop="image" content="http://www.example.com/image.jpg">
-
-<!-- Twitter Card data -->
- <meta name="twitter:card" value="summary">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="https://mantestalent.com/">
-<meta name="twitter:title" content="Page Title">
-<meta name="twitter:description" content="Mantes-Talents, est une plateforme, ayant pour objectif 
-de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses environs,
- afin de faire émerger et cultiver le potentiel de tous ">
-<meta name="twitter:creator" content="@author_handle">
-<!-- Twitter summary card with large image must be at least 280x150px -->
-<meta name="twitter:image:src" content="http://www.example.com/image.html">
-
-<!-- Open Graph data -->
-
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://mantestalent.com/" />
-<meta property="og:image" content="http://example.com/image.jpg" />
-<meta property="og:description" content="Mantes-Talents, est une plateforme, ayant pour objectif 
-de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses environs,
- afin de faire émerger et cultiver le potentiel de tous " />
-<meta property="og:site_name" content="Mantes_Talents" />
-<meta property="og:title" content="Meta Tags — Preview, Edit and Generate">
-
-
-
-
-   
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-           <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
-   
-   
-   
-   
-       <!--!-->
-      
-       
-        <link rel="stylesheet" href="{{ asset('backasso/css/styles.css')}}" />
-         <link href="{{  asset('node_modules/@fortawesome/fontawesome-free/css/all.css')}}" rel="stylesheet" />
-      <link href="{{  asset('node_modules/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
-         
-
-
-
-      <!-- Responsive free-->
-     
-    
-    
-        <!-- Responsive-->
-        
-        <!-- fevicon -->
-        
-        <!-- Scrollbar Custom CSS -->
-       
-        <!-- Tweaks for older IEs-->
-       
-
-        <style>
-				.bd-placeholder-img {
-					font-size: 1.125rem;
-					text-anchor: middle;
-					-webkit-user-select: none;
-					-moz-user-select: none;
-					user-select: none;
-				}
-
-				@media(min-width: 768px) {
-					.bd-placeholder-img-lg {
-						font-size: 3.5rem;
-					}
-				}
-			</style>
-            
-		 	{% block stylesheets %}{% endblock %}
-
-    </head>
-
-   
-   <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="/">Accueil</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading"></div>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+		<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="{{ asset('backasso/css/styles.css')}}"/>
+		<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+          <link href="{{  asset('node_modules/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+		
+	</head>
+	<body class="sb-nav-fixed">
+		<nav
+			class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+			<!-- Navbar Brand-->
+			<a class="navbar-brand ps-3" href="index.html">Accueil</a>
+			<!-- Sidebar Toggle-->
+			<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+				<i class="fas fa-bars"></i>
+			</button>
+			<!-- Navbar Search-->
+			<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+				<div class="input-group">
+					<input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch"/>
+					<button class="btn btn-primary" id="btnNavbarSearch" type="button">
+						<i class="fas fa-search"></i>
+					</button>
+				</div>
+			</form>
+			<!-- Navbar-->
+			<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="{{ asset('/upload/galerie/' ~ app.user.profil.avatar|default('undefined'))}}" class="card-img-top" alt="avatar" style="width: 40px; height:40px"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+						<li>
+							<a class="dropdown-item" href="{{ path('app_profil',{'id': app.user.id, 'slug': app.user.profil.slug})}}">Paramètre</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="{{ path('modif_profilCompte',{'id': app.user.id, 'slug': app.user.profil.slug})}}">Journal d'activité</a>
+						</li>
+						<li><hr class="dropdown-divider"/></li>
+						<li>
+							<a class="dropdown-item" href="{{ path('app_logout')}}">Se déconnecter</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="layoutSidenav">
+			<div id="layoutSidenav_nav">
+				<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+					<div class="sb-sidenav-menu">
+						<div class="nav">
+							<div class="sb-sidenav-menu-heading"></div>
+							<a class="nav-link" href="{{path('admin_index')}}">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-tachometer-alt"></i>
+								</div>
+								Tableau de bord
+							</a>
+							<div class="sb-sidenav-menu-heading"></div>
+							     {% if is_granted('ROLE_REDACTEUR') %} 
+							<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#admin" aria-expanded="false" aria-controls="collapseLayouts">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-columns"></i>
+								</div>
+								Administrateur
+								<div class="sb-sidenav-collapse-arrow">
+									<i class="fas fa-angle-down"></i>
+								</div>
+							</a>
+							<div class="collapse" id="admin" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+								<nav class="sb-sidenav-menu-nested nav">
+									<a class="nav-link" href="{{ path('app_personnel')}}">Staff</a>
+									<a class="nav-link" href="{{ path('membre_assoc')}}">Memebre</a>
+									<a class="nav-link" href="{{ path('app_image')}}">Activités</a>
+									<a class="nav-link" href="{{ path('app_soutien_categorie')}}">M'écéne</a>
+									<a class="nav-link" href="{{ path('app_don')}}">Don/Cotisation</a>
+									<a class="nav-link" href="{{ path('app_sponsoring')}}">Sponsoring</a>
+									
+									
+								</nav>
+							</div>
+							<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-columns"></i>
+								</div>
+								Redacteur
+								<div class="sb-sidenav-collapse-arrow">
+									<i class="fas fa-angle-down"></i>
+								</div>
+							</a>
+							<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+								<nav class="sb-sidenav-menu-nested nav">
+									<a class="nav-link" href="{{ path('admin_actu')}}">Actualités</a>
+									<a class="nav-link" href="{{ path('app_list')}}">News-letters</a>
+									<a class="nav-link" href="{{ path('app_image')}}">Publicité</a>
+									<a class="nav-link" href="{{ path('app_soutien_categorie')}}">Boutique</a>
+									<a class="nav-link" href="{{ path('app_programme')}}">Programme</a>
+									<a class="nav-link" href="{{ path('app_programme')}}">Infos</a>
+								</nav>
+							</div>
+							{% endif %}
+                              {% if is_granted('ROLE_MEDIA' ) %} 
+							<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-book-open"></i>
+								</div>
                                 
-                            </a>
-                            <div class="sb-sidenav-menu-heading"></div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Actualités/Ateliers
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{path('admin_actu')}}">Actualités</a>
-                                    <a class="nav-link" href="{{path('app_afficheatelier')}}">Ateliers</a>
-                                    
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Cinéma
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                                  <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="Pages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                       cinéma
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#Pages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="{{ path('app_affichecine') }}">Fictions</a>
-                                         
-                                            <a class="nav-link" href="{{path('app_affidocback') }}">Documantaires</a>
-                                            <a class="nav-link" href="password.html">Evenements</a>
-                                            <a class="nav-link" href="{{path('app_festival.affiche')}}">Festivals</a>
-                                        </nav>
-                                    </div>
-                                
-                                   
-                                </nav>
-                            </div>
-
-
-
-                               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Musique
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="AccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                         fichiers musiques
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#AccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">fichiers Radio</a>
-                                            <a class="nav-link" href="{{ path('app_afficheradio') }}">Playliste</a>
-                                            <a class="nav-link" href="password.html">Atelier Mao</a>
-                                            <a class="nav-link" href="password.html">Atelier Batterie</a>
-                                            <a class="nav-link" href="password.html">Enregitrement</a>
-                                              <a class="nav-link" href="password.html">Composition</a>
-                                        </nav>
-                                    </div>
-                                
-                                   
-                                </nav>
-                            </div>
-                               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Radio
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+								Média
+								<div class="sb-sidenav-collapse-arrow">
+									<i class="fas fa-angle-down"></i>
+								</div>
+							</a>
+							<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+								<!--<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+									<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+										WEBTV
+										<div class="sb-sidenav-collapse-arrow">
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</a>
+									<div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+										<nav class="sb-sidenav-menu-nested nav">
+											{# <a class="nav-link" href="{{path('app_backradio')}}">Emission</a>
+											<a class="nav-link" href="register.html">Atelier</a>
+											<a class="nav-link" href="{{ path('app_programme')}}">Programme</a> #}
+										</nav>
+									</div>
+									
+								</nav>-->
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        fichiers radio
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">fichiers Radio</a>
-                                            <a class="nav-link" href="{{ path('app_afficheradio') }}">Playliste</a>
-                                            <a class="nav-link" href="password.html">Programmation</a>
-                                            <a class="nav-link" href="password.html">Statistiques</a>
-                                            <a class="nav-link" href="password.html">PlayerRadio</a>
-                                        </nav>
-                                    </div>
+									<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesRadio" aria-expanded="false" aria-controls="pagesCollapseAuth">
+										WebRadio
+										<div class="sb-sidenav-collapse-arrow">
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</a>
+									<div class="collapse" id="pagesRadio" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+										<nav class="sb-sidenav-menu-nested nav">
+											<a class="nav-link" href="{{ path('app_afficheradio') }}">Emission</a>
+											<a class="nav-link" href="{{path('app_afficheatelier')}}">Atelier</a>
+											<a class="nav-link" href="{{ path('app_programme')}}">Programme</a>
+											<a class="nav-link" href="{{ path('app_route')}}">Feuille de route</a>
+										</nav>
+									</div>
+									
+								</nav>
+							</div>
+                             {% endif %} 
+
+                             {# <h1>CINEM</h1> #}
+                                 {% if is_granted('ROLE_CINEMA') %}   
+							<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-book-open"></i>
+								</div>
                                 
-                                   
-                                </nav>
-                            </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
-                </nav>
+								Cinéma
+								<div class="sb-sidenav-collapse-arrow">
+									<i class="fas fa-angle-down"></i>
+								</div>
+							</a>
+							<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+								<nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+									<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+										Fiction/Documentaire
+										<div class="sb-sidenav-collapse-arrow">
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</a>
+									<div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+										<nav class="sb-sidenav-menu-nested nav">
+											<a class="nav-link" href="{{path('app_afficheatelier')}}">Atelier</a>
+											<a class="nav-link" href="{{path('app_affidocback')}}">Documentaire</a>
+											<a class="nav-link" href="{{path('app_affichecine')}}">Fiction</a>
+											<a class="nav-link" href="{{path('app_festival.affiche')}}">Festival</a>
+										</nav>
+									</div>
+									
+								</nav>
+                                {# <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+									<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesRadio" aria-expanded="false" aria-controls="pagesCollapseAuth">
+										WebRadio
+										<div class="sb-sidenav-collapse-arrow">
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</a>
+									<div class="collapse" id="pagesRadio" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+										<nav class="sb-sidenav-menu-nested nav">
+											<a class="nav-link" href="login.html">Emission</a>
+											<a class="nav-link" href="register.html">Atelier</a>
+											<a class="nav-link" href="password.html">Programme</a>
+										</nav>
+									</div>
+									
+								</nav> #}
+							</div>
+                               {% endif %}  
 
-              
-            </div>
-     
-           {# <div class="container">
-            <div class="row">
-<body class="is-preload"> {% for message in app.session.flashBag.get('info') %}
-
-			<div class="alert alert-info" role="alert">
-				{{message}}
+                             {# <h1>MUDIQUE</h1>  #}
+                               {% if is_granted('ROLE_MUSIQUE') %} 
+							<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-book-open"></i>
+								</div>
+                                
+								Musique
+								<div class="sb-sidenav-collapse-arrow">
+									<i class="fas fa-angle-down"></i>
+								</div>
+							</a>
+							<div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+								{# <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+									<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+										Musique
+										<div class="sb-sidenav-collapse-arrow">
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</a>
+									<div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+										<nav class="sb-sidenav-menu-nested nav">
+											<a class="nav-link" href="login.html">Emission</a>
+											<a class="nav-link" href="register.html">Atelier</a>
+											<a class="nav-link" href="password.html">Programme</a>
+										</nav>
+									</div>
+									
+								</nav> #}
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+									<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesRadio" aria-expanded="false" aria-controls="pagesCollapseAuth">
+										Musique/Ateleir
+										<div class="sb-sidenav-collapse-arrow">
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</a>
+									<div class="collapse" id="pagesRadio" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+										<nav class="sb-sidenav-menu-nested nav">
+											<a class="nav-link" href="{{ path('app_affichemusique') }}">Musique/production</a>
+											<a class="nav-link" href="{{path('app_afficheatelier')}}">Atelier</a>
+											{# <a class="nav-link" href="password.html">Programme</a> #}
+										</nav>
+									</div>
+									
+								</nav>
+							</div>
+                              {% endif %}  
+                           
+							
+						</div>
+					</div>
+					
+				</nav>
 			</div>
-		{% endfor %}
+			<div id="layoutSidenav_content">
+				<main>
 
-		{% for message in app.session.flashBag.get('success') %}
+					<div class="container-fluid px-4">
+						
+						<div class="container">
+							<div class="row">
+								<body class="is-preload">
+									{% for message in app.session.flashBag.get('info') %}
 
-			<div class="alert alert-success" role="alert">
-				{{message}}
+										<div class="alert alert-info" role="alert">
+											{{message}}
+										</div>
+									{% endfor %}
+
+									{% for message in app.session.flashBag.get('success') %}
+
+										<div class="alert alert-success" role="alert">
+											{{message}}
+										</div>
+									{% endfor %}
+
+									{% for message in app.session.flashBag.get('error') %}
+
+										<div class="alert alert-danger" role="alert">
+											{{message}}
+										</div>
+									{% endfor %}
+								</body>
+							</div>
+
+						</div>
+						
+
+
+						{% block body %}{% endblock %}
+					</div>
+
+				</main>
+				{# <footer class="py-4 bg-light mt-auto">
+				                    <div class="container-fluid px-4">
+				                        <div class="d-flex align-items-center justify-content-between small">
+				                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+				                            
+				                        </div>
+				                    </div>
+				                </footer> #}
 			</div>
-		{% endfor %}
-
-		{% for message in app.session.flashBag.get('error') %}
-
-			<div class="alert alert-danger" role="alert">
-				{{message}}
-			</div>
-		{% endfor %}
-            </div>
-                	
-            </div> #}
-    
-        {% block body %} {% endblock %}
-          {#% include "footer.html.twig" %#}
-       
-
-
-
-
-      
-    
-
-
-     
-        <script src="{#{ asset('assets/jquery/jQuery.js')}#}"></script>
-       
-
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+		</div>
+		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
@@ -301,13 +320,7 @@ de mettre en lumière  les talents, entreprise  de Mantes la Jolie et ses enviro
     <script src="{{ asset('backasso/js/scripts.js')}}"></script>
     <script  src="{{ asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
     <script  src="{{ asset('node_modules/select2/dist/js/select2.min.js')}}"></script>
-    <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
-    <script src="{{ asset('backasso/js/ckeditor.js') }}"></script>
+
        {% block javascripts %} {% endblock %}
-       
-       
-        
-    </body>
-</html>
-
-
+            </body>
+            </html>

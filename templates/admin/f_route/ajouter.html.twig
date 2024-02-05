@@ -1,0 +1,98 @@
+{% extends 'baseback.html .twig' %}
+
+{% block title %}Radio!
+{% endblock %}
+
+{% block body %}
+<main>
+				<div class="container">
+
+                    <br><br>
+					<h1 class="mt-4 text-center">
+						feuille de route !
+					</h1>
+					<div class="container">
+					{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+						<br><div class="row">
+							<div class="col">{{ form_row(form.title, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+							<div class="col">{{ form_row(form.animateur, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+						</div>
+                        <div class="row">
+							<div class="col">{{ form_row(form.producteur, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+							<div class="col">{{ form_row(form.technicien, {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+                            <div class="col">{{ form_row(form.invitePrincipal , {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+						</div>
+						<div class="form-group">
+						<div class="row">
+							
+							<div class="col">{{ form_row(form.tempsDirect , {'attr': {'placeholder': "Nom de Réalisateur"}}) }}</div>
+							<div class="col">{{ form_row(form.tempsEnregistrement , {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+							<div class="col">{{ form_row(form.source , {'attr': {'placeholder': "Image de l'article"}}) }}</div>
+						</div>
+                        <div class="form-group">
+						<div class="row">
+							
+							<div class="col">{{ form_row(form.theme , {'attr': {'placeholder': "Nom de Réalisateur"}}) }}</div>
+							<div class="col">{{ form_row(form.qui , {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+							<div class="col">{{ form_row(form.theme , {'attr': {'placeholder': "Image de l'article"}}) }}</div>
+						</div>
+						</div>
+                        <div class="form-group">
+						<div class="row">
+							
+							<div class="col">{{ form_row(form.source , {'attr': {'placeholder': "Nom de Réalisateur"}}) }}</div>
+							<div class="col">{{ form_row(form.format , {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+							<div class="col">{{ form_row(form.duréeTotal , {'attr': {'placeholder': "Image de l'article"}}) }}</div>
+						</div>
+						</div>
+                        <div class="form-group">
+						<div class="row">
+							
+							<div class="col">{{ form_row(form.source , {'attr': {'placeholder': "Nom de Réalisateur"}}) }}</div>
+							<div class="col">{{ form_row(form.date , {'attr': {'placeholder': "Titre de l'article"}}) }}</div>
+							<div class="col">{{ form_row(form.note , {'attr': {'placeholder': "Image de l'article"}}) }}</div>
+						</div>
+						</div>
+						<div class="form-group">
+
+							{{ form_row(form.content , {'attr': {'placeholder': "le contenu de l'article"}}) }}
+						</div>
+
+						
+						
+						<div class="mb-3 ">
+							<button type="submit" class="btn btn-success">
+								{% if editMode %}
+									Enregistrer
+								{% else %}
+									Ajouter l'article
+
+								{% endif %}
+
+							</button>
+							
+						</div>
+						<div><a href="{{path('add_image')}}">Ajouter l'affiche des artistes</a></div>
+						
+                 
+
+						{{ form_end(form) }}
+
+						
+					</div>
+					
+				</main>
+
+					{# {{ render(controller( 'App\\Controller\\ImageController::form' )) }} #}
+			{% endblock %}
+			{% block javascripts   %}
+
+					<script> 
+						$(document).ready(function() {
+							$('.select2').select2();
+						});
+						</script>
+						
+			{% endblock %}
+
+{% endfor %}

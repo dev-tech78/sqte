@@ -15,7 +15,7 @@ class CommentaireController extends AbstractController
 {
     #[Route('/commentaire', name: 'app_commentaire')]
     public function index(
-    Request $request, ManagerRegistry $entityManager): Response
+    Request $request, ManagerRegistry $entityManager  ): Response
     {
         $article = new Actualites();
         $commentaire = new Commentaire();
@@ -24,10 +24,11 @@ class CommentaireController extends AbstractController
         $form->handleRequest($request);
    
     if($form->isSubmitted() && $form->isValid()) {
-        $commentaire->setActualites($article);
+        //$commentaire->setActualites($article);
         $anno = $entityManager->getManager();
         $anno->persist($commentaire);
         $anno->flush();
+        
     }
       
     

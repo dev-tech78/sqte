@@ -36,9 +36,9 @@
    {#% for anonnces in app.user.adverTs %#}
    {%  for festivals in festival %}
     <tr>
-      <td data-label="Titre">{{festivals.titel }}</td>
-      <td data-label="Date">{{festivals.createdAt | date('d/m/y')}} à: {{ festivals.createdAt | date('H:i') }} </td>
-      <td data-label="Contenu">{{festivals.discription|u.truncate(25, '...')|raw }}<br></td>
+       <td data-label="Titre">{{festivals.titel}}</td> 
+       <td data-label="Date">{{festivals.createdAt | date('d/m/y')}} à: {{ festivals.createdAt | date('H:i') }} </td> 
+      <td data-label="Contenu">{{festivals.discription|u.truncate(25, '...')|raw }}<br></td> 
       <td data-label="Action">
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -47,13 +47,13 @@
 <div class="btn-group" role="group">
 <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle"  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                   <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
-                    <a class="dropdown-item" href="{{ path('modif.doc',{'id': festivals.id}) }}">Modifier</a>
-                    <a class="dropdown-item"   href="{{path('app_docdelete',{'id': festivals.id})}}" data-bs-toggle="modal" data-bs-target="#exampleModal2{{festivals.id}}" >Suprrimer</a>
+                     <a class="dropdown-item" href="{{ path('modif.doc',{'id': festivals.id}) }}">Modifier</a> 
+                     <a class="dropdown-item"   href="{{path('app_docdelete',{'id': festivals.id})}}" data-bs-toggle="modal" data-bs-target="#exampleModal2{{festivals.id}}" >Suprrimer</a> 
                     
                   </div>
                 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal2{{festivals.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="exampleModal2{{festivals.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
   <div class="modal-dialog">
     <div class="modal-content" id="useraction">
       <div class="modal-header">
@@ -61,11 +61,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       Vous étre sur le point de supprimer l'anonnce : {{festivals.id}} titre,{{festivals.titel}} ?
+        Vous étre sur le point de supprimer l'anonnce : {{festivals.id}} titre,{{festivals.titel}} ? 
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-        	<a type="button" href="{{path('app_docdelete',{'id': festivals.id})}}" class="btn btn-primary">Suprrimer</a>
+        	 <a type="button" href="{{path('app_docdelete',{'id': festivals.id})}}" class="btn btn-primary">Suprrimer</a> 
       </div>
     </div>
   </div>

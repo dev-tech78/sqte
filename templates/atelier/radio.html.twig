@@ -2,7 +2,7 @@
             
            {% for ateliers in atelier %}
             <div class="col-lg-6 align-items-center justify-content-left d-flex mb-5 mb-lg-0">
-                <div class="blockabout">
+                <div class="blockabout" id="potoaboutwrap">
                     <div class="blockabout-inner text-center text-sm-start">
                         <div class="title-big pb-3 mb-3">
                             <h3>Atelier</h3>
@@ -10,12 +10,12 @@
                         <p class="description-p text-muted pe-0 pe-lg-0">
                          {{ateliers.titel }}
                         </p>
-                        <p class="description-p text-muted pe-0 pe-lg-0">{{ateliers.discription}}.</p>
-                        <div class="sosmed-horizontal pt-3 pb-3">
+                        <p class="description-p text-muted pe-0 pe-lg-0">{{ateliers.discription|striptags|raw}}.</p>
+                        {# <div class="sosmed-horizontal pt-3 pb-3">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
                             <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
+                        </div> #}
                         <a href="{{ path('app_atelier',{'nom': ateliers.titel} )}}" class="btn rey-btn mt-3">voir plus</a>
 
                      
@@ -24,10 +24,12 @@
                
             </div>
             <div class="col-lg-6 mt-5 mt-lg-0">
-                <figure class="potoaboutwrap">
-                    <img src="{{ asset('upload/galerie/' ~ ateliers.image)}}" alt="potoabout" />
+                <figure class="potoaboutwrap" >
+                    <img src="{{ asset('upload/galerie/' ~ ateliers.image)}}" alt="potoabout" style="height: 580px;" />
                 </figure>
             </div>
            
     </div>
+    {% else %}
+          <h2 class="text-center"> pas d'atelier pour l'instant </h2>
           {% endfor %}
